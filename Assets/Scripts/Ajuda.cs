@@ -11,7 +11,7 @@ public class Ajuda : MonoBehaviour
         
     }
 
-	//Aaaaaaaaa
+	//Dea passou por aqui kk :)
     void Update()
     {
         
