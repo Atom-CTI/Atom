@@ -11,6 +11,7 @@ public class Ajuda : MonoBehaviour
         
     }
 
+	//Aaaaaaaaa
     void Update()
     {
         
