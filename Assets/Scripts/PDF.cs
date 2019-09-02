@@ -21,4 +21,9 @@ public class PDF : MonoBehaviour
     {
         SceneManager.LoadScene("Inicio");
     }
+
+    public void apertar()
+    {
+        Debug.Log("thiago");
+    }
 }
