@@ -1,0 +1,28 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Controler : MonoBehaviour
+{
+    public Animator anim;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    public void anima()
+    {
+        anim.SetInteger("Move", 1);
+    }
+    public void animas()
+    {
+        anim.SetInteger("Move", 2);
+    }
+}

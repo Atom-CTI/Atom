@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="rutherford" size="300.000000 300.000000" />
+    <ImageTarget name="pierrecurie" size="300.000000 300.000000" />
+    <ImageTarget name="pauling" size="300.000000 300.000000" />
+    <ImageTarget name="pasteur" size="300.000000 300.000000" />
+    <ImageTarget name="newton" size="300.000000 300.000000" />
+    <ImageTarget name="meyer" size="300.000000 300.000000" />
+    <ImageTarget name="mendeleiev" size="300.000000 300.000000" />
+    <ImageTarget name="mendel" size="300.000000 300.000000" />
+    <ImageTarget name="mariecurie" size="300.000000 300.000000" />
+    <ImageTarget name="lavoisier" size="300.000000 300.000000" />
+    <ImageTarget name="kekule" size="300.000000 300.000000" />
+    <ImageTarget name="joliotcurrie" size="300.000000 300.000000" />
+    <ImageTarget name="heisenberg" size="300.000000 300.000000" />
+    <ImageTarget name="fleming" size="300.000000 300.000000" />
+    <ImageTarget name="faraday" size="300.000000 300.000000" />
+    <ImageTarget name="einstein" size="300.000000 300.000000" />
+    <ImageTarget name="dalton" size="300.000000 300.000000" />
+    <ImageTarget name="bunsen" size="300.000000 300.000000" />
+    <ImageTarget name="boyle" size="300.000000 300.000000" />
+    <ImageTarget name="bohr" size="300.000000 300.000000" />
+  </Tracking>
+</QCARConfig>
