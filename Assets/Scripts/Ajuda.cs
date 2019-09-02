@@ -11,7 +11,7 @@ public class Ajuda : MonoBehaviour
         
     }
 
-	//Dea passou por aqui kk :)
+	//Dea passou por aqui kk :) mochetti viado kkkkKKKKKKKK
     void Update()
     {
         
