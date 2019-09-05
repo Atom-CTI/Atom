@@ -608,4 +608,9 @@ public class GameMannager : MonoBehaviour
         tabela.transform.localPosition = new Vector2(0, 10000);
     }
 
+    public void Lixeira()
+    {
+        
+    }
+
 }
