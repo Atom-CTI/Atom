@@ -4,21 +4,7 @@ using UnityEngine;
 
 public static class ReacaoQuimica
 {
-
-
-    //    public enum TipoElemento { METAL, AMETAL, SEMIMETAL }
     public enum TipoLigacao { SIMPLES, DUPLA, TRIPLA, DATIVA, ERRO }
-
-    /*public struct Atomo
-    {
-        public string nome;
-        public int valencia;
-        public int eletronsAtuais;
-        public int eletronsDisponiveis;
-        public int ligado;
-        public decimal eletroNeg;
-        //        public TipoElemento tipo;
-    }*/
 
     public struct Ligacao
     {
@@ -59,6 +45,10 @@ public static class ReacaoQuimica
         {
             novaLigacao.tipo = TipoLigacao.SIMPLES;
             mudanca = 1;
+			/*Debug.Log("**** " + lista[primeiro].eletronsAtuais);
+			Debug.Log("**** " + lista[primeiro].eletronsDisponiveis);
+			Debug.Log("**** " + lista[segundo].eletronsAtuais);
+			Debug.Log("**** " + lista[segundo].eletronsDisponiveis);*/
         }
 
         lista[primeiro].eletronsAtuais += mudanca;
@@ -106,7 +96,7 @@ public static class ReacaoQuimica
             int grupo1_atual = 0;
             int grupo2_atual = separador;
 
-            while (lista[separador - 1].eletronsAtuais != 8 && lista[tamanho - 1].eletronsAtuais != 8 && fracassos < 10)
+            while ((lista[separador - 1].eletronsAtuais != 8 || lista[separador - 1].eletronsAtuais != 2) && (lista[tamanho - 1].eletronsAtuais != 8 || lista[tamanho - 1].eletronsAtuais != 2) && fracassos < 10)
             {
                 novaLigacao = criarLigacao(lista, grupo1_atual, grupo2_atual);
                 //Debug.Log(novaLigacao.primeiro.eletronsAtuais);
@@ -123,16 +113,14 @@ public static class ReacaoQuimica
 
                 // checa se os indices são maiores que seus limites
                 // se sim, retornar ao valor original
-                if ((lista[grupo1_atual].eletronsAtuais == 8 ||
-                   (lista[grupo1_atual].nome == "H" && lista[grupo1_atual].eletronsAtuais == 2))
+                if ((lista[grupo1_atual].eletronsAtuais == 8 || lista[grupo1_atual].eletronsAtuais == 2)
                    || lista[grupo1_atual].ligado == 2)
                 {
                     ++grupo1_atual;
                 }
                 if (grupo1_atual >= separador) { grupo1_atual = 0; }
 
-                if ((lista[grupo2_atual].eletronsAtuais == 8 ||
-                   (lista[grupo2_atual].nome == "H" && lista[grupo2_atual].eletronsAtuais == 2))
+                if ((lista[grupo2_atual].eletronsAtuais == 8 || lista[grupo2_atual].eletronsAtuais == 2)
                    || lista[grupo1_atual].ligado == 2)
                 {
                     ++grupo2_atual;
@@ -141,7 +129,94 @@ public static class ReacaoQuimica
             }
         }
 
-        int grupo = -1;
+        //Debug.Log(grupo);
+        //Debug.Log(naoBalanceado[0]);
+        //Debug.Log(naoBalanceado[1]);
+        //Debug.Log(lista[naoBalanceado[0]].ligado);
+        //Debug.Log(lista[naoBalanceado[1]].ligado);
+
+        // dativa
+
+        if (separador != 0 && (!lista[0].nome.Equals("H") && !lista[tamanho - 1].nome.Equals("H")))
+        {
+            Atomos[] resto = new Atomos[10];
+            int indiceResto = 0;
+            for (int i = 0; i < tamanho; i++)
+            {
+                if (lista[i].eletronsAtuais != 8 && lista[i].eletronsAtuais != 2)
+                {
+                    resto[indiceResto] = lista[i];
+                    indiceResto++;
+                }
+            }
+			
+            // dativa com o primeiro recebendo
+            if (indiceResto != 0 && ((lista[0].eletroNeg > lista[tamanho - 1].eletroNeg && resto[0].nome == lista[0].nome) ||
+                (lista[0].nome.Equals("C") && lista[0].eletronsDisponiveis >= 2)))
+            {
+                int recebeAtual = 0;
+                int daAtual = separador;
+                
+				//Debug.Log("****" + resto[recebeAtual].ligado);
+				//Debug.Log("****" + lista[daAtual].eletronsDisponiveis);
+                while ((resto[recebeAtual].ligado == 0 || resto[recebeAtual].eletronsAtuais != 8) && lista[daAtual].eletronsDisponiveis >= 2)
+                {
+                    /*Debug.Log(resto[recebeAtual].ligado);
+                    Debug.Log(lista[daAtual].eletronsDisponiveis);*/
+
+                    resto[recebeAtual].eletronsAtuais += 2;
+                    lista[daAtual].eletronsDisponiveis -= 2;
+					
+					resto[recebeAtual].ligado++;
+					lista[daAtual].ligado++;
+					
+                    listaLigacao[sucessos].primeiro = resto[recebeAtual];
+                    listaLigacao[sucessos].segundo = lista[daAtual];
+                    listaLigacao[sucessos].tipo = TipoLigacao.DATIVA;
+
+                    sucessos++;
+
+                    // checa se os indices são maiores que seus limites
+                    // se sim, retornar ao valor original
+                    if (daAtual < tamanho) { daAtual++; }
+                    if (daAtual >= tamanho) { daAtual = separador; }
+
+                    if (recebeAtual < indiceResto) { recebeAtual++; }
+                    if (recebeAtual >= indiceResto) { recebeAtual = 0; }
+                }
+            }
+            // dativa com o segundo recebendo
+            if (indiceResto != 0 && ((lista[0].eletroNeg < lista[tamanho - 1].eletroNeg && resto[0].nome == lista[tamanho - 1].nome) ||
+                (lista[tamanho - 1].nome.Equals("C") && lista[0].eletronsDisponiveis >= 2)))
+            {
+                int recebeAtual = 0;
+                int daAtual = 0;
+                while ((lista[recebeAtual].ligado == 0 || lista[recebeAtual].eletronsAtuais != 8) && resto[daAtual].eletronsDisponiveis >= 2)
+                {
+                    resto[daAtual].eletronsAtuais -= 2;
+                    lista[recebeAtual].eletronsDisponiveis += 2;
+
+                    resto[daAtual].ligado++;
+                    lista[recebeAtual].ligado++;
+
+                    listaLigacao[sucessos].primeiro = resto[daAtual];
+                    listaLigacao[sucessos].segundo = lista[recebeAtual];
+                    listaLigacao[sucessos].tipo = TipoLigacao.DATIVA;
+
+                    sucessos++;
+
+                    // checa se os indices são maiores que seus limites
+                    // se sim, retornar ao valor original
+                    if (daAtual < indiceResto) { daAtual++; }
+                    if (daAtual >= indiceResto) { daAtual = 0; }
+
+                    if (recebeAtual < separador) { recebeAtual++; }
+                    if (recebeAtual >= separador) { recebeAtual = 0; }
+                }
+            }
+        }
+		
+		int grupo = -1;
         int[] naoBalanceado = new int[4];
         naoBalanceado[0] = -1;
         naoBalanceado[1] = -1;
@@ -168,7 +243,7 @@ public static class ReacaoQuimica
             int j = 0;
             for (int i = 0; i < separador; i++)
             {
-                if (lista[i].eletronsDisponiveis > 0 && lista[i].eletronsAtuais != 8)
+                if (lista[i].eletronsDisponiveis > 0 && lista[i].eletronsAtuais != 8 && lista[i].eletronsAtuais != 2)
                 {
                     grupo = 0;
                     naoBalanceado[j] = i;
@@ -181,7 +256,7 @@ public static class ReacaoQuimica
                 j = 0;
                 for (int i = separador; i < tamanho; i++)
                 {
-                    if (lista[i].eletronsDisponiveis > 0 && lista[i].eletronsAtuais != 8)
+                    if (lista[i].eletronsDisponiveis > 0 && lista[i].eletronsAtuais != 8 && lista[i].eletronsAtuais != 2)
                     {
                         grupo = separador;
                         naoBalanceado[j] = i;
@@ -190,14 +265,8 @@ public static class ReacaoQuimica
                 }
             }
         }
-
-        //Debug.Log(grupo);
-        //Debug.Log(naoBalanceado[0]);
-        //Debug.Log(naoBalanceado[1]);
-        //Debug.Log(lista[naoBalanceado[0]].ligado);
-        //Debug.Log(lista[naoBalanceado[1]].ligado);
-
-        // criar uma ligação entre os elementos de mesmo tipo se necessário
+		
+		// criar uma ligação entre os elementos de mesmo tipo se necessário
         if (grupo != -1 && naoBalanceado[0] != -1 && naoBalanceado[1] != -1
              && lista[naoBalanceado[0]].ligado == 0 && lista[naoBalanceado[1]].ligado == 0)
         {
@@ -207,82 +276,15 @@ public static class ReacaoQuimica
                 listaLigacao[sucessos++] = novaLigacao;
             }
         }
-
-        // dativa
-
-        if (separador != 0 && (!lista[0].nome.Equals("H") && !lista[tamanho - 1].nome.Equals("H")))
-        {
-            Atomos[] resto = new Atomos[10];
-            int indiceResto = 0;
-            for (int i = 0; i < tamanho; i++)
-            {
-                if (lista[i].eletronsAtuais != 8)
-                {
-                    resto[indiceResto] = lista[i];
-                    indiceResto++;
-                }
-            }
-
-            // dativa com o primeiro recebendo
-            if (resto[0] != null && ((lista[0].eletroNeg > lista[tamanho - 1].eletroNeg && resto[0].nome == lista[0].nome) ||
-                lista[0].nome.Equals("C")))
-            {
-                int recebeAtual = 0;
-                int daAtual = 0;
-                
-                while (resto[daAtual].ligado != 0 && lista[recebeAtual].eletronsDisponiveis >= 2)
-                {
-                    Debug.Log(resto[recebeAtual].ligado);
-                    Debug.Log(lista[daAtual].eletronsDisponiveis);
-
-                    resto[daAtual].eletronsAtuais += 2;
-                    lista[recebeAtual].eletronsDisponiveis -= 2;
-
-                    listaLigacao[sucessos].primeiro = resto[daAtual];
-                    listaLigacao[sucessos].segundo = lista[recebeAtual];
-                    listaLigacao[sucessos].tipo = TipoLigacao.DATIVA;
-
-                    sucessos++;
-
-                    // checa se os indices são maiores que seus limites
-                    // se sim, retornar ao valor original
-                    if (recebeAtual < separador) { recebeAtual++; }
-                    if (recebeAtual >= separador) { recebeAtual = 0; }
-
-                    if (daAtual < indiceResto - 1) { daAtual++; }
-                    if (daAtual >= indiceResto - 1) { daAtual = 0; }
-                }
-            }
-            // dativa com o segundo recebendo
-            if (resto[0] != null && ((lista[0].eletroNeg < lista[tamanho - 1].eletroNeg && resto[0].nome == lista[tamanho - 1].nome) ||
-                lista[tamanho - 1].nome.Equals("C")))
-            {
-                int recebeAtual = 0;
-                int daAtual = 0;
-                while (resto[recebeAtual].ligado == 0 && lista[daAtual].eletronsDisponiveis >= 2)
-                {
-                    resto[recebeAtual].eletronsAtuais += 2;
-                    lista[daAtual].eletronsDisponiveis -= 2;
-
-                    resto[recebeAtual].ligado++;
-                    lista[daAtual].ligado++;
-
-                    listaLigacao[sucessos].primeiro = resto[recebeAtual];
-                    listaLigacao[sucessos].segundo = lista[daAtual];
-                    listaLigacao[sucessos].tipo = TipoLigacao.DATIVA;
-
-                    sucessos++;
-
-                    // checa se os indices são maiores que seus limites
-                    // se sim, retornar ao valor original
-                    if (recebeAtual < indiceResto - 1) { recebeAtual++; }
-                    if (recebeAtual >= indiceResto - 1) { recebeAtual = 0; }
-
-                    if (daAtual < separador) { daAtual++; }
-                    if (daAtual >= separador) { daAtual = 0; }
-                }
-            }
-        }
+		
+		
+		
+		
+		/*for(int i = 0; i < tamanho; i++) {
+			Debug.Log("nome: " + lista[i].nome);
+			Debug.Log("atua: " + lista[i].eletronsAtuais);
+			Debug.Log("disp: " + lista[i].eletronsDisponiveis);
+		}*/
 
         int numeroUm = separador;
         int numeroDois = tamanho - separador;
@@ -322,17 +324,16 @@ public static class ReacaoQuimica
             listaLigacaoFinal[k] = listaLigacao[i];
             k++;
         }
-
-        if ("H".Equals(lista[0].nome) && "H".Equals(lista[1].nome))
-        {
-            return true;
-        }
+		
+		/*for(int i = 0; i < k; i++) {
+			Debug.Log("**** " + listaLigacaoFinal[i].primeiro.nome + " + " + listaLigacaoFinal[i].segundo.nome);
+		}*/
 
         for (int i = 0; i < tamanho; i++)
         {
-            Debug.Log(listaLigacaoFinal[0].primeiro.ligado);
+            /*Debug.Log(listaLigacaoFinal[0].primeiro.ligado);
             Debug.Log(lista[i].eletronsAtuais);
-            Debug.Log(lista[i].eletronsDisponiveis);
+            Debug.Log(lista[i].eletronsDisponiveis);*/
             if ((lista[i].eletronsDisponiveis != 0 &&
                 lista[i].eletronsAtuais < 8) ||
                 lista[i].ligado == 0)
