@@ -183,7 +183,7 @@ public class GameMannager : MonoBehaviour
         btnvolta.transform.localPosition = new Vector2(0, 10000);
 
         btncadastra = GameObject.Find("btnCadastrar");
-        btncadastra.transform.localPosition = new Vector2(-50, 635);
+        btncadastra.transform.localPosition = new Vector2(-30, 550);
 
         aviso = GameObject.Find("aviso");
         aviso.transform.localPosition = new Vector2(0, 10000);
@@ -566,7 +566,7 @@ public class GameMannager : MonoBehaviour
     {
         btnvolta.transform.localPosition = new Vector2(0, 10000);
 
-        btncadastra.transform.localPosition = new Vector2(-50, 635);
+        btncadastra.transform.localPosition = new Vector2(-30, 550);
 
         aviso.transform.localPosition = new Vector2(0, 10000);
 
@@ -584,7 +584,7 @@ public class GameMannager : MonoBehaviour
 
         aviso.transform.localPosition = new Vector2(0, 0);
 
-        btnvolta.transform.localPosition = new Vector2(-50, 635);
+        btnvolta.transform.localPosition = new Vector2(0, 550);
 
         btncadastra.transform.localPosition = new Vector2(0, 10000);
     }

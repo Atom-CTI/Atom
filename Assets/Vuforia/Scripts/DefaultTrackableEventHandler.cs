@@ -26,7 +26,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 
     public GameObject modocadastro;
     public GameObject tabela;
-    public GameObject btnTabela;
     public GameObject aviso;
     public GameObject voltar;
 
@@ -100,7 +99,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             if (modocadastrar == true)
             {
                 //tabela.SetActive(true);
-                tabela.transform.localPosition = new Vector2(-100, 260);
+                tabela.transform.localPosition = new Vector2(0, 0);
                 //aviso.SetActive(false);
                 aviso.transform.localPosition = new Vector2(0, 10000);
                 //voltar.SetActive(false);
@@ -121,18 +120,18 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             {
                 tabela.transform.localPosition = new Vector2(0, 10000);
 
-                aviso.transform.localPosition = new Vector2(-50, 260);
+                aviso.transform.localPosition = new Vector2(0, 0);
 
-                voltar.transform.localPosition = new Vector2(-50, 635);
+                voltar.transform.localPosition = new Vector2(0, 550);
             }
             else
             {
-                modocadastro.transform.localPosition = new Vector2(-50, 635);
-                //tabela.SetActive(false);
+                modocadastro.transform.localPosition = new Vector2(-30, 550);
+
                 tabela.transform.localPosition = new Vector2(0, 10000);
-                //aviso.SetActive(true);
+
                 aviso.transform.localPosition = new Vector2(0, 10000);
-                //voltar.SetActive(true);
+
                 voltar.transform.localPosition = new Vector2(0, 10000);
                 cadastro = false;
             }
