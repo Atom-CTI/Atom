@@ -976,7 +976,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -1631,7 +1631,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -1760,7 +1760,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -1933,7 +1933,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -2225,7 +2225,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -2354,7 +2354,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -2511,7 +2511,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -2640,7 +2640,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -2932,7 +2932,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -3061,7 +3061,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -3623,7 +3623,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -4308,7 +4308,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -4568,7 +4568,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -4697,7 +4697,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -4826,7 +4826,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -5310,7 +5310,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -5439,7 +5439,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -5568,7 +5568,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -6066,7 +6066,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -6469,7 +6469,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -6598,7 +6598,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -6890,7 +6890,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -7047,7 +7047,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -7335,7 +7335,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -7464,7 +7464,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -7887,7 +7887,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -8371,7 +8371,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -8879,7 +8879,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -9008,7 +9008,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -9137,7 +9137,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -9294,7 +9294,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -10017,7 +10017,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -10428,7 +10428,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -10880,7 +10880,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -11088,7 +11088,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -11217,7 +11217,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -11346,7 +11346,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -11612,7 +11612,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -12838,7 +12838,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -12967,7 +12967,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -13096,7 +13096,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -13304,7 +13304,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -13433,7 +13433,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -13562,7 +13562,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -13892,7 +13892,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -14158,7 +14158,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -14424,7 +14424,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -14716,7 +14716,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -14982,7 +14982,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -15139,7 +15139,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -15589,7 +15589,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -15855,7 +15855,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -16056,7 +16056,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -16185,7 +16185,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -16932,7 +16932,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -17460,7 +17460,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -17720,7 +17720,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -18123,7 +18123,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -18385,7 +18385,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -18514,7 +18514,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -18643,7 +18643,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -19066,7 +19066,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -19354,7 +19354,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -19614,7 +19614,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -19906,7 +19906,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -20277,7 +20277,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -20406,7 +20406,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -20635,7 +20635,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -21026,7 +21026,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -21364,7 +21364,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -21521,7 +21521,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -21650,7 +21650,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -21779,7 +21779,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -21974,7 +21974,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -22103,7 +22103,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -22232,7 +22232,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -22361,7 +22361,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -22490,7 +22490,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -22619,7 +22619,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -22935,7 +22935,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -23064,7 +23064,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -23193,7 +23193,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -23485,7 +23485,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -23826,7 +23826,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -23955,7 +23955,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
@@ -24084,7 +24084,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3807287145158604343}
         m_MethodName: AtribuiBotao
         m_Mode: 5
         m_Arguments:
