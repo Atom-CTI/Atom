@@ -610,22 +610,22 @@ public class GameMannager : MonoBehaviour
 
     public void Lixeira()
     {
-
-
-        for (int i = 0; i <= qrs.Count; i++)
+        if(contadorQR > 0)
         {
-            Debug.Log("IT" + qrs[i].qrName);
-            foreach (Transform child in GameObject.Find("IT" + qrs[i].qrName).transform)
+            for (int i = 0; i <= qrs.Count; i++)
             {
-                if (child.gameObject.name.Contains("GM"))
-                    Destroy(child.gameObject);
-                else
-                    GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
+                Debug.Log("IT" + qrs[i].qrName);
+                foreach (Transform child in GameObject.Find("IT" + qrs[i].qrName).transform)
+                {
+                    if (child.gameObject.name.Contains("GM"))
+                        Destroy(child.gameObject);
+                    else
+                        GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
+                }
+
+                qrs.RemoveAt(i);
+
             }
-
-            qrs.RemoveAt(i);
-
         }
     }
-
 }
