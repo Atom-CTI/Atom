@@ -99,7 +99,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             if (modocadastrar == true)
             {
                 //tabela.SetActive(true);
-                tabela.transform.localPosition = new Vector2(0, 0);
+                tabela.transform.localPosition = new Vector2(45, 0);
                 //aviso.SetActive(false);
                 aviso.transform.localPosition = new Vector2(0, 10000);
                 //voltar.SetActive(false);

@@ -39,7 +39,7 @@ public class PDF : MonoBehaviour
     {
         Debug.Log("thiago");
 
-        string param_url = "http://200.145.153.172/atom/enviarEmail.php?";
+        string param_url = "http://200.145.153.172/atom/enviarEmail.php?";  //id=" + Login.ID ; 
 
         Debug.Log(param_url);
 

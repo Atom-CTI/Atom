@@ -16,7 +16,7 @@ public class Login : MonoBehaviour
     InputField txtSenha;
     Text txtErro;
 
-    public static string ID;
+    public static string ID = null;
     string usuario;
     string senha;
 
