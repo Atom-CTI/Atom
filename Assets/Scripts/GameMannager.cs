@@ -543,6 +543,7 @@ public class GameMannager : MonoBehaviour
                     } //if
                     else
                     {
+                        Wait3(3);
                         Debug.Log("eeeeeeeeeeeeeeeeeeeeee" + nomeproduto);
                         string ultimo = "";
                         if (atomosdareacao[0].eletroNeg > atomosdareacao[diferenca].eletroNeg)
@@ -645,6 +646,11 @@ public class GameMannager : MonoBehaviour
         gm.transform.localPosition = new Vector3(-1, (float)1.5, 0);
         // tamanho
         gm.transform.localScale = new Vector3((float)1, (float)1, (float)1);
+    }
+
+    public IEnumerator Wait3(int tempo)
+    {
+        yield return new WaitForSeconds(tempo);
     }
 
 
