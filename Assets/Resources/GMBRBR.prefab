@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6867800266386356645}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -16.742178, y: 29.128712, z: 99.84999}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0.84999, y: 0, z: 0}
   m_LocalScale: {x: 0.06, y: 0.6000002, z: 0.06000003}
   m_Children: []
   m_Father: {fileID: 6867800267650608949}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!33 &6867800266386356649
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6867800266775262725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.742178, y: 29.128712, z: 100.352}
+  m_LocalPosition: {x: 1.352, y: 0, z: 0}
   m_LocalScale: {x: 0.666, y: 0.666, z: 0.666}
   m_Children:
   - {fileID: 6867800267338398086}
@@ -241,7 +241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6867800267580840464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.742178, y: 29.128712, z: 99.352005}
+  m_LocalPosition: {x: 0.35201, y: 0, z: 0}
   m_LocalScale: {x: 0.666, y: 0.666, z: 0.666}
   m_Children:
   - {fileID: 6867800268388545424}
@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6867800267650608949}
   m_Layer: 0
-  m_Name: Br2
+  m_Name: GMBRBR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6867800267650608948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.742178, y: 29.128712, z: 99.352005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6867800266386356646}

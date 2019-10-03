@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using TMPro;
 
 public class GameMannager : MonoBehaviour
 {
@@ -156,6 +157,7 @@ public class GameMannager : MonoBehaviour
     public Sprite PLCLNA;
     public Sprite PLNN;
 
+    public Sprite cardlaranja;
     //criar sprite dos 20 produtos
 
     public static string qrName;
@@ -394,6 +396,25 @@ public class GameMannager : MonoBehaviour
 
                 if (reagiu)
                 {
+                    Debug.Log("REAGIU");
+                    nomeproduto = "";
+                    int diferenca = 0;
+                    string eleanterior = "";
+                    /*for (int i = 0; i < atomosdareacao.Count; i++)
+                    {
+                        nomeproduto = nomeproduto + atomosdareacao[i].nome;
+                        if (i == 0)
+                            eleanterior = atomosdareacao[0].nome;
+                        else
+                        {
+                            if (eleanterior != atomosdareacao[i].nome)
+                            {
+                                diferenca = i;
+                                return;
+                            }
+
+                        }
+                    }*/
                     nomeproduto = "";
                     for (int i = 0; i < atomosdareacao.Count; i++)
                     {
@@ -437,7 +458,11 @@ public class GameMannager : MonoBehaviour
                             if (child.gameObject.name.Contains("GM"))
                                 Destroy(child.gameObject);
                             else
+                            {
                                 GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
+                                GameObject.Find(child.gameObject.name).GetComponentInChildren<TextMeshPro>().text = "";
+                            }
+                                
                         }
 
                         qrs.RemoveAt(indexremover[i]);
@@ -470,6 +495,16 @@ public class GameMannager : MonoBehaviour
                             }
                         }
 
+                        foreach (Transform child in GameObject.Find("IT" + novocard.Remove(0, 2)).transform)
+                        {
+                            if (child.gameObject.name.Equals("botao"))
+                                Destroy(child.gameObject);
+                        }
+
+                        ////////////////////
+
+                        
+
                         //produto = Resources.Load("GM" + nomeproduto) as GameObject;
                         qrs.Find(x => novocard.Contains(x.qrName)).gm = produto;
                         GameObject gm = Instantiate(produto) as GameObject;
@@ -492,21 +527,82 @@ public class GameMannager : MonoBehaviour
                         {
                             StartCoroutine("Wait");
                         }
+                        
+                        GameObject botao = new GameObject();
+                        botao.name = "botao";
+                        botao.transform.parent = gm.transform.parent;
+                        botao.transform.rotation = new Quaternion(0, 0, 0, 0);
+                        botao.transform.localRotation = new Quaternion(0, 0, 0, 0);
+                        botao.transform.localPosition = new Vector3(0, (float)0.3, 0);
+                        botao.transform.localScale = new Vector3(1, 1, 1);
+                        botao.AddComponent<InfoElemento>();
+
+                        BoxCollider botaoCollider = botao.AddComponent<BoxCollider>();
+                        botaoCollider.size = new Vector3(1, (float)0.4, 1);
+                        
                     } //if
                     else
                     {
-                        Debug.Log(nomeproduto);//printar tela produto sem molecula
+                        Debug.Log("eeeeeeeeeeeeeeeeeeeeee" + nomeproduto);
+                        string ultimo = "";
+                        if (atomosdareacao[0].eletroNeg > atomosdareacao[diferenca].eletroNeg)
+                        {
+                            int val = atomosdareacao.Count - diferenca;
+                            ultimo = atomosdareacao[diferenca].nome + val + atomosdareacao[0].nome + diferenca;
+                        }
+                        else if (atomosdareacao[0].eletroNeg < atomosdareacao[diferenca].eletroNeg)
+                        {
+                            int val = atomosdareacao.Count - diferenca;
+                            ultimo = atomosdareacao[0].nome + diferenca + atomosdareacao[diferenca].nome + val;
+                        }
+                        else if (diferenca == 0)
+                        {
+                            ultimo = atomosdareacao[0].nome + atomosdareacao.Count;
+                        }
+
+                        Debug.Log("sauhsauhasuhsahusauhsahusauhasuhsahuashusa" + ultimo);
+
+                        foreach (Transform child in GameObject.Find("IT" + novocard.Remove(0, 2)).transform)
+                        {
+                            if (child.gameObject.name.Contains("GM"))
+                            {
+                                Destroy(child.gameObject);
+                                break;
+                            }
+                        }
+
+                        
+                        //CRIA CARD LARANJA
+                        System.Reflection.FieldInfo camp = this.GetType().GetField("cardlaranja");
+                        Sprite cardorange = (Sprite)camp.GetValue(this);
+                        GameObject.Find(novocard).GetComponent<SpriteRenderer>().sprite = cardorange;
+                        GameObject.Find(novocard).transform.localScale = new Vector3((float)0.15, (float)0.15, (float)0.15);
+                        qrs.Find(x => novocard.Contains(x.qrName)).card = GameObject.Find(novocard);
+
+                        
+                        foreach(Transform child in GameObject.Find(novocard).transform)
+                        {
+                            if(child.gameObject.name.Contains("Text"))
+                            {
+                                child.gameObject.GetComponent<TextMeshPro>().text = ultimo;
+
+                                return;
+                            }
+                        }
+                        
+
+
                     }
-                    //GameObject produto = Resources.Load(nomeproduto) as GameObject;
-                    //GameObject GMletra = Instantiate(letra) as GameObject;
-                    //procurar nomeproduto na pasta
-                    //se achar, printar molecula
-                    //se nao achar, printar na tela o produto com nome certinho
+                    
                 }
                 else
                 {
                     Debug.Log("Nao reagiu");
+                    
+                        
+
                     //debug nao reagui na tela
+
                 }
 
                 // alterar essa funcao para retornar corretamente o objeto

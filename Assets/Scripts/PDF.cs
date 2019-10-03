@@ -10,7 +10,7 @@ public class PDF : MonoBehaviour
     string verif;
     string email;
 
-
+    readonly string ID = Login.ID;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,7 @@ public class PDF : MonoBehaviour
 
     public void Download()
     {
-        Debug.Log("thiago1");
+        //Debug.Log("thiago1");
         StartCoroutine(BtnDownload());
     }
 
@@ -39,7 +39,7 @@ public class PDF : MonoBehaviour
     {
         Debug.Log("thiago");
 
-        string param_url = "http://200.145.153.172/atom/enviarEmail.php?";  //id=" + Login.ID ; 
+        string param_url = "http://200.145.153.172/atom/enviarEmail.php?" + "id="+ ID;  //id=" + Login.ID ; 
 
         Debug.Log(param_url);
 
