@@ -111,7 +111,7 @@ public class BD : MonoBehaviour
         string tipoBD;
         float eletronegBD;
 
-        arq = Application.dataPath + "/Atom.csv";
+        arq = Application.persistentDataPath + "/Atom.csv";
 
         if (File.Exists(arq))
         {

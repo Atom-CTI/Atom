@@ -457,7 +457,7 @@ public class GameMannager : MonoBehaviour
                         {
                             if (child.gameObject.name.Contains("GM"))
                                 Destroy(child.gameObject);
-                            else
+                            else if(child.gameObject.name.Contains("PL"))
                             {
                                 GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
                                 GameObject.Find(child.gameObject.name).GetComponentInChildren<TextMeshPro>().text = "";
@@ -721,7 +721,7 @@ public class GameMannager : MonoBehaviour
                 {
                     if (child.gameObject.name.Contains("GM"))
                         Destroy(child.gameObject);
-                    else
+                    else if(child.gameObject.name.Contains("PL"))
                         GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
                 }
 
