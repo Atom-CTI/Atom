@@ -511,7 +511,7 @@ public class GameMannager : MonoBehaviour
                         gm.name = "GM" + nomeproduto;
                         gm.transform.parent = GameObject.Find("IT" + novocard.Remove(0, 2)).transform;
                         //posicao
-                        gm.transform.localPosition = new Vector3(-1, (float)1.5, 0);
+                        gm.transform.localPosition = new Vector3(0, (float)2, 0);
                         // tamanho
                         gm.transform.localScale = new Vector3((float)1, (float)1, (float)1);
 
