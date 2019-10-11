@@ -9,6 +9,8 @@ Confidential and Proprietary - Protected under copyright and other laws.
 using UnityEngine;
 using Vuforia;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Collections;
 
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.

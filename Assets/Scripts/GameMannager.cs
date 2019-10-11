@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using TMPro;
+using Vuforia;
 
 public class GameMannager : MonoBehaviour
 {
@@ -167,6 +168,7 @@ public class GameMannager : MonoBehaviour
     string novocard = "";
     string nomeproduto = "";
 
+
     GameObject representacao;
     GameObject produto;
 
@@ -175,7 +177,6 @@ public class GameMannager : MonoBehaviour
     public static bool podefazerreacao;
     void Start()
     {
-
 
         podefazerreacao = true;
         reacao = new List<string>();
@@ -491,15 +492,13 @@ public class GameMannager : MonoBehaviour
                             if (child.gameObject.name.Contains("GM"))
                             {
                                 Destroy(child.gameObject);
-                                break;
+                            }
+                            if (child.gameObject.name.Contains("botao"))
+                            {
+                                Destroy(child.gameObject);
                             }
                         }
 
-                        foreach (Transform child in GameObject.Find("IT" + novocard.Remove(0, 2)).transform)
-                        {
-                            if (child.gameObject.name.Equals("botao"))
-                                Destroy(child.gameObject);
-                        }
 
                         ////////////////////
 
@@ -523,10 +522,10 @@ public class GameMannager : MonoBehaviour
                         GameObject.Find(novocard).transform.localScale = new Vector3((float)0.15, (float)0.15, (float)0.15);
                         qrs.Find(x => novocard.Contains(x.qrName)).card = GameObject.Find(novocard);
 
-                        if (representacao = Resources.Load("RP" + nomeproduto) as GameObject)
-                        {
-                            StartCoroutine("Wait");
-                        }
+                        //if (representacao = Resources.Load("RP" + nomeproduto) as GameObject)
+                        //{
+                        //    StartCoroutine("Wait");
+                        //}
                         
                         GameObject botao = new GameObject();
                         botao.name = "botao";
@@ -654,15 +653,10 @@ public class GameMannager : MonoBehaviour
     }
 
 
-
-
     void Update()
     {
+        
     }
-
-
-
-
 
     public void voltar()
     {
@@ -714,19 +708,20 @@ public class GameMannager : MonoBehaviour
     {
         if(contadorQR > 0)
         {
-            for (int i = 0; i <= qrs.Count; i++)
+            for (int i = 0; i <= qrs.Count-1; i++)
             {
-                Debug.Log("IT" + qrs[i].qrName);
+                Debug.Log("apagando IT" + qrs[i].qrName);
                 foreach (Transform child in GameObject.Find("IT" + qrs[i].qrName).transform)
                 {
                     if (child.gameObject.name.Contains("GM"))
                         Destroy(child.gameObject);
                     else if(child.gameObject.name.Contains("PL"))
                         GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
+                    if (child.gameObject.name == "botao")
+                        Destroy(child.gameObject);
                 }
 
                 qrs.RemoveAt(i);
-
             }
         }
     }
