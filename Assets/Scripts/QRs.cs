@@ -8,6 +8,7 @@ public class QRs : MonoBehaviour
     public List<Atomos> atomo;
     public string qrName;
     public GameObject card;
+    public GameObject qrit;
     public GameObject gm;
 
     public int posicaolista = -1;
@@ -34,11 +35,16 @@ public class QRs : MonoBehaviour
         GameMannager.nomesocial.Add(lista);
         */
 
+        //card.GetComponent<DefaultTrackableEventHandler>().qrlivre = false;
+
         card.GetComponent<Renderer>().enabled = true;
         card.GetComponent<SpriteRenderer>().sprite = r;
         //CARD
 
         string ITnome = "IT" + qrName;
+
+        qrit = GameObject.Find(ITnome);
+        qrit.GetComponent<DefaultTrackableEventHandler>().qrlivre = false;
 
         string nomeAtomo = "atomo_" + atomo[0].valencia + "e";
         GameObject objPrefab = Resources.Load(nomeAtomo) as GameObject;

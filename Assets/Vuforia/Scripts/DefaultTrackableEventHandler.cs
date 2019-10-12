@@ -36,6 +36,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     public static bool cadastro = false;
     public static bool modocadastrar = false;
 
+    public bool qrlivre;
+
     public string namee;
     public static string namee2;
 
@@ -98,7 +100,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             namee2 = namee;
             OnTrackingFound();
 
-            if (modocadastrar == true)
+            if (modocadastrar == true && qrlivre == true)
             {
                 //tabela.SetActive(true);
                 tabela.transform.localPosition = new Vector2(45, 0);

@@ -168,6 +168,7 @@ public class GameMannager : MonoBehaviour
     string novocard = "";
     string nomeproduto = "";
 
+    int qtdQR;
 
     GameObject representacao;
     GameObject produto;
@@ -177,7 +178,6 @@ public class GameMannager : MonoBehaviour
     public static bool podefazerreacao;
     void Start()
     {
-
         podefazerreacao = true;
         reacao = new List<string>();
         //nomesocial = new List<List<string>>();
@@ -195,6 +195,8 @@ public class GameMannager : MonoBehaviour
         tabela.transform.localPosition = new Vector2(0, 10000);
 
         modocadastro = false;
+
+        qtdQR = GameObject.FindGameObjectsWithTag("QR").Length;
 
         atomos = new List<Atomos>();
         qrs = new List<QRs>();
@@ -454,6 +456,10 @@ public class GameMannager : MonoBehaviour
                     for (int i = indexremover.Count - 1; i >= 0; i--)
                     {
                         Debug.Log("IT" + qrs[indexremover[i]].qrName);
+
+                        GameObject qrLivreReacao = GameObject.Find("IT" + qrs[indexremover[i]].qrName);
+                        qrLivreReacao.GetComponent<DefaultTrackableEventHandler>().qrlivre = true;
+
                         foreach (Transform child in GameObject.Find("IT" + qrs[indexremover[i]].qrName).transform)
                         {
                             if (child.gameObject.name.Contains("GM"))
@@ -464,6 +470,8 @@ public class GameMannager : MonoBehaviour
                                 GameObject.Find(child.gameObject.name).GetComponentInChildren<TextMeshPro>().text = "";
                             }
                                 
+
+
                         }
 
                         qrs.RemoveAt(indexremover[i]);
@@ -706,23 +714,27 @@ public class GameMannager : MonoBehaviour
 
     public void Lixeira()
     {
-        if(contadorQR > 0)
-        {
-            for (int i = 0; i <= qrs.Count-1; i++)
-            {
-                Debug.Log("apagando IT" + qrs[i].qrName);
-                foreach (Transform child in GameObject.Find("IT" + qrs[i].qrName).transform)
-                {
-                    if (child.gameObject.name.Contains("GM"))
-                        Destroy(child.gameObject);
-                    else if(child.gameObject.name.Contains("PL"))
-                        GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
-                    if (child.gameObject.name == "botao")
-                        Destroy(child.gameObject);
-                }
+        GameObject[] apagaQrs = GameObject.FindGameObjectsWithTag("QR");
 
-                qrs.RemoveAt(i);
+        for(int a = 0; a < qtdQR; a++)
+        {
+            apagaQrs[a].GetComponent<DefaultTrackableEventHandler>().qrlivre = true;
+            
+            foreach(Transform child in GameObject.Find(apagaQrs[a].name).transform)
+            {
+                if (child.gameObject.name.Contains("GM"))
+                    Destroy(child.gameObject);
+                else if (child.gameObject.name.Contains("PL"))
+                    GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
+
+                if (child.gameObject.name == "botao")
+                    Destroy(child.gameObject);
             }
+        }
+
+        for (int i = 0; i < qrs.Count-1; i++)
+        {
+            qrs.RemoveAt(i);
         }
     }
 }
