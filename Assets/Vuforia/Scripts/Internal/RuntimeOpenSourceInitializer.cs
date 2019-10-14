@@ -43,7 +43,7 @@ namespace Vuforia.UnityCompiled
                 get { return mUnityRenderPipeline; }
             }
 
-            public IUnityAndroidPermissions UnityAndroidPermissions => throw new NotImplementedException();
+            //public IUnityAndroidPermissions UnityAndroidPermissions => throw new NotImplementedException();
 
             public bool IsUnityUICurrentlySelected()
             {
