@@ -22,7 +22,9 @@ public class GameMannager : MonoBehaviour
 
     public static List<Atomos> atomos;
     public static List<QRs> qrs;
-
+	
+	public static int contadorQR = 0;
+	
     public Sprite H;
     public Sprite Li;
     public Sprite Be;
