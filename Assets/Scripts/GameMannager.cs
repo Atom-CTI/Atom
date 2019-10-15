@@ -546,7 +546,17 @@ public class GameMannager : MonoBehaviour
 
                         BoxCollider botaoCollider = botao.AddComponent<BoxCollider>();
                         botaoCollider.size = new Vector3(1, (float)0.4, 1);
-                        
+						
+                        foreach(Transform child in GameObject.Find(novocard).transform)
+                        {
+                            if(child.gameObject.name.Contains("Text"))
+                            {
+                                child.gameObject.GetComponent<TextMeshPro>().text = "";
+
+                                return;
+                            }
+                        }
+						
                     } //if
                     else
                     {
