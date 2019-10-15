@@ -115,10 +115,11 @@ public class MannagerConsulta : MonoBehaviour
         }
     }
 
+    string btn1 = "";
     string nomeAtomo = "";
     public void AtribuiBotao(string btn)
     {
-
+        btn1 = btn;
         int indice = BD.Banco(btn, atomos);
         Atomos atomo = atomos[indice];
 
@@ -137,7 +138,7 @@ public class MannagerConsulta : MonoBehaviour
 
 
         //posicao
-        //gm.transform.parent = GameObject.Find("Ground Plane Stage").transform;
+        //gm.transform.parent = GameObject.Find("pai").transform;
         gm.transform.position = new Vector3(315, 803, -450);
         // tamanho
         gm.transform.localScale = new Vector3(500*(float)atomo.tamanho, 500*(float)atomo.tamanho, 500* (float)atomo.tamanho);
@@ -165,11 +166,40 @@ public class MannagerConsulta : MonoBehaviour
         GMletra.transform.localScale = new Vector3((float)0.03, (float)0.03, (float)0.03);
 
 
-
-
-
+        //jogar botao p tela
+        GameObject bt = GameObject.Find("btnInfo");
+        bt.transform.localPosition = new Vector3((float)0, (float)-430, (float)0);
 
         tabela.transform.localPosition = new Vector2(0, 10000);
+    }
+
+    public void clicou()
+    {
+        Debug.Log("click");
+
+
+        //pegar nome elemento
+        string nomeproduto = btn1;
+        //Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaa" + btn1);
+
+
+        if (GameObject.Find("infoCard") == null)
+        {
+            //Debug.Log("asuhasuhasuhasuhasuhasuh");
+            Sprite spriteCard = Resources.Load<Sprite>("IN" + nomeproduto);
+            if (spriteCard == null)
+            {
+                return;
+            }
+            GameObject infoCard = new GameObject("infoCard");
+            infoCard.AddComponent<SpriteRenderer>();
+            infoCard.GetComponent<SpriteRenderer>().sprite = spriteCard;
+            infoCard.transform.position = new Vector3(330, 655, -1999);
+            infoCard.transform.localScale = new Vector3((float)0.05, (float)0.05, (float)0.05);
+            infoCard.AddComponent<BoxCollider>();
+
+            infoCard.AddComponent<InfoCard>();
+        }
     }
 
     public void Lixeira()
@@ -178,9 +208,16 @@ public class MannagerConsulta : MonoBehaviour
         card.GetComponent<Renderer>().enabled = false;
         card.GetComponent<SpriteRenderer>().sprite = null;
 
+
+        GameObject bt = GameObject.Find("btnInfo");
+        bt.transform.localPosition = new Vector3((float)1000, (float)-430, (float)0);
+
+
         Destroy(GameObject.Find("GMConsulta"));
         molecula = false;
         tabela.transform.localPosition = new Vector2(45, 0);
+
+
     }
 
     public void Volta()

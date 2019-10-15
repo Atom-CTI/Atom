@@ -53,4 +53,6 @@ public class InfoElemento : MonoBehaviour
 			infoCard.AddComponent<InfoCard>();
 		}
 	}
+
+    
 }
