@@ -23,6 +23,6 @@ public class Controler : MonoBehaviour
     }
     public void animas()
     {
-        anim.SetInteger("Move", 2);
+        anim.SetInteger("Move2", 1);
     }
 }

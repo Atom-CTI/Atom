@@ -22,9 +22,9 @@ public class GameMannager : MonoBehaviour
 
     public static List<Atomos> atomos;
     public static List<QRs> qrs;
-
-    public static int contadorQR = 0;
-
+	
+	public static int contadorQR = 0;
+	
     public Sprite H;
     public Sprite Li;
     public Sprite Be;
@@ -462,7 +462,7 @@ public class GameMannager : MonoBehaviour
 
                         foreach (Transform child in GameObject.Find("IT" + qrs[indexremover[i]].qrName).transform)
                         {
-                            if (child.gameObject.name.Contains("GM"))
+                            if (child.gameObject.name.Contains("GM") || child.gameObject.name.Equals("botao"))
                                 Destroy(child.gameObject);
                             else if(child.gameObject.name.Contains("PL"))
                             {
@@ -546,7 +546,17 @@ public class GameMannager : MonoBehaviour
 
                         BoxCollider botaoCollider = botao.AddComponent<BoxCollider>();
                         botaoCollider.size = new Vector3(1, (float)0.4, 1);
-                        
+						
+                        foreach(Transform child in GameObject.Find(novocard).transform)
+                        {
+                            if(child.gameObject.name.Contains("Text"))
+                            {
+                                child.gameObject.GetComponent<TextMeshPro>().text = "";
+
+                                return;
+                            }
+                        }
+						
                     } //if
                     else
                     {
