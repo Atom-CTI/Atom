@@ -530,10 +530,14 @@ public class GameMannager : MonoBehaviour
                         GameObject.Find(novocard).transform.localScale = new Vector3((float)0.15, (float)0.15, (float)0.15);
                         qrs.Find(x => novocard.Contains(x.qrName)).card = GameObject.Find(novocard);
 
-                        //if (representacao = Resources.Load("RP" + nomeproduto) as GameObject)
-                        //{
-                        //    StartCoroutine("Wait");
-                        //}
+                        if(GameObject.Find("RP"+nomeproduto) == null)
+                        {
+                            if (representacao = Resources.Load("RP" + nomeproduto) as GameObject)
+                            {
+                                StartCoroutine("Wait");
+                            }
+                        }
+                        
                         
                         GameObject botao = new GameObject();
                         botao.name = "botao";
@@ -625,7 +629,7 @@ public class GameMannager : MonoBehaviour
 
     public IEnumerator Wait()
     {
-        representacao = Resources.Load("RP" + nomeproduto) as GameObject;
+        //representacao = Resources.Load("RP" + nomeproduto) as GameObject;
 
         yield return new WaitForSeconds(2);
         Destroy(GameObject.Find("GM" + nomeproduto));
@@ -724,13 +728,13 @@ public class GameMannager : MonoBehaviour
             
             foreach(Transform child in GameObject.Find(apagaQrs[a].name).transform)
             {
-                if (child.gameObject.name.Contains("GM"))
+                if (child.gameObject.name.Contains("GM") || child.gameObject.name.Equals("botao"))
                     Destroy(child.gameObject);
                 else if (child.gameObject.name.Contains("PL"))
+                {
                     GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
-
-                if (child.gameObject.name == "botao")
-                    Destroy(child.gameObject);
+                    GameObject.Find(child.gameObject.name).GetComponentInChildren<TextMeshPro>().text = "";
+                }
             }
         }
 
