@@ -11,6 +11,7 @@ public class Menu : MonoBehaviour
 
     public Button btnMinhaConta;
     public Image imgMinhaConta;
+    public Image tampaMinhaConta;
     public Sprite user;
     public Sprite xuser;
 
@@ -22,16 +23,17 @@ public class Menu : MonoBehaviour
 
         btnMinhaConta = GameObject.Find("btnMinhaConta").GetComponent<Button>();
         imgMinhaConta = GameObject.Find("imgMinhaConta").GetComponent<Image>();
+        tampaMinhaConta = GameObject.Find("tampaMinhaConta").GetComponent<Image>();
 
         if(Login.ID == "1" || Login.ID == null)
         {
             btnMinhaConta.interactable = false;
-            imgMinhaConta.sprite = xuser;
+            tampaMinhaConta.transform.localPosition = new Vector2(45, 15);
         }
         else
         {
             btnMinhaConta.interactable = true;
-            imgMinhaConta.sprite = user;
+            tampaMinhaConta.transform.localPosition = new Vector2(10000, 0);
         }
 
         

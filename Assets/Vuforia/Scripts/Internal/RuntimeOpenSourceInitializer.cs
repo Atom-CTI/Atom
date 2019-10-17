@@ -37,6 +37,7 @@ namespace Vuforia.UnityCompiled
         class OpenSourceUnityCompiledFacade : IUnityCompiledFacade
         {
             readonly IUnityRenderPipeline mUnityRenderPipeline = new UnityRenderPipeline();
+            readonly IUnityAndroidPermissions mUnityAndroidPermissions = new UnityAndroidPermissions();
 
             public IUnityRenderPipeline UnityRenderPipeline
             {
@@ -44,6 +45,11 @@ namespace Vuforia.UnityCompiled
             }
 
             //public IUnityAndroidPermissions UnityAndroidPermissions => throw new NotImplementedException();
+
+            public IUnityAndroidPermissions UnityAndroidPermissions
+            {
+                get { return mUnityAndroidPermissions; }
+            }
 
             public bool IsUnityUICurrentlySelected()
             {
@@ -87,5 +93,27 @@ namespace Vuforia.UnityCompiled
                     BeginFrameRendering(cameras);
             }
         }
+        class UnityAndroidPermissions : IUnityAndroidPermissions
+        {
+            public bool HasRequiredPermissions()
+            {
+                #if PLATFORM_ANDROID
+                        return Permission.HasUserAuthorizedPermission(Permission.Camera);
+                #else
+                        return true;
+                #endif
+            }
+
+            public void AskForPermissions()
+            {
+                #if PLATFORM_ANDROID
+                    Permission.RequestUserPermission(Permission.Camera);
+                #endif
+            }
+        }
+    }
+
+    public interface IUnityAndroidPermissions
+    {
     }
 }
