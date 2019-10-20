@@ -187,6 +187,7 @@ public class MannagerConsulta : MonoBehaviour
         {
             //Debug.Log("asuhasuhasuhasuhasuhasuh");
             Sprite spriteCard = Resources.Load<Sprite>("IN" + nomeproduto);
+            Debug.Log("IN" + nomeproduto);
             if (spriteCard == null)
             {
                 return;

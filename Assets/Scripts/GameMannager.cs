@@ -530,12 +530,14 @@ public class GameMannager : MonoBehaviour
                         GameObject.Find(novocard).transform.localScale = new Vector3((float)0.15, (float)0.15, (float)0.15);
                         qrs.Find(x => novocard.Contains(x.qrName)).card = GameObject.Find(novocard);
 
-                        if(GameObject.Find("RP"+nomeproduto) == null)
+                        if (GameObject.Find("RP" + nomeproduto) == null)
                         {
                             if (representacao = Resources.Load("RP" + nomeproduto) as GameObject)
                             {
                                 StartCoroutine("Wait");
                             }
+                            else
+                                Debug.Log("nao tem RP");
                         }
                         
                         
@@ -639,7 +641,7 @@ public class GameMannager : MonoBehaviour
         //posicao
         gm.transform.localPosition = new Vector3(0, (float)1.5, (float)-0.5);
         // tamanho
-        gm.transform.localScale = new Vector3((float)0.04, (float)0.04, (float)0.04);
+        gm.transform.localScale = new Vector3(1, 1, 1);
 
         StartCoroutine("Wait2");
 
@@ -738,7 +740,7 @@ public class GameMannager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < qrs.Count-1; i++)
+        for (int i = 0; i < qrs.Count; i++)
         {
             qrs.RemoveAt(i);
         }
