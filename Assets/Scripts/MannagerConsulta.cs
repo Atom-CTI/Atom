@@ -168,7 +168,7 @@ public class MannagerConsulta : MonoBehaviour
 
         //jogar botao p tela
         GameObject bt = GameObject.Find("btnInfo");
-        bt.transform.localPosition = new Vector3((float)0, (float)-430, (float)0);
+        bt.transform.localPosition = new Vector3((float)0, (float)-1500, (float)0);
 
         tabela.transform.localPosition = new Vector2(0, 10000);
     }
@@ -195,7 +195,7 @@ public class MannagerConsulta : MonoBehaviour
             GameObject infoCard = new GameObject("infoCard");
             infoCard.AddComponent<SpriteRenderer>();
             infoCard.GetComponent<SpriteRenderer>().sprite = spriteCard;
-            infoCard.transform.position = new Vector3(330, 655, -1999);
+            infoCard.transform.position = new Vector3(330, 655, -1998);
             infoCard.transform.localScale = new Vector3((float)0.05, (float)0.05, (float)0.05);
             infoCard.AddComponent<BoxCollider>();
 

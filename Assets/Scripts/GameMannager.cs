@@ -730,13 +730,18 @@ public class GameMannager : MonoBehaviour
             
             foreach(Transform child in GameObject.Find(apagaQrs[a].name).transform)
             {
-                if (child.gameObject.name.Contains("GM") || child.gameObject.name.Equals("botao"))
+                if (child.gameObject.name.Contains("GM"))
                     Destroy(child.gameObject);
                 else if (child.gameObject.name.Contains("PL"))
                 {
                     GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
                     GameObject.Find(child.gameObject.name).GetComponentInChildren<TextMeshPro>().text = "";
                 }
+
+                if (child.gameObject.name.Equals("botao"))
+                    Destroy(child.gameObject);
+                if (child.gameObject.name.Contains("RP"))
+                    Destroy(child.gameObject);
             }
         }
 
