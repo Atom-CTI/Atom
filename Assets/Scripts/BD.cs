@@ -101,7 +101,7 @@ public class BD : MonoBehaviour
         
     }
 
-
+	// acessa o banco para pegar os dados de um àtomo de nome "btn"
     public static int Banco(string btn, List<Atomos> atm)
     {
         string nomeBD;
@@ -111,14 +111,16 @@ public class BD : MonoBehaviour
         int noxBD;
         string tipoBD;
         float eletronegBD;
-
+		
+		// carrega o arquivo do banco
         arq = Application.persistentDataPath + "/Atom.csv";
-
+		
+		// se ele existe, sobrescreve-o
         if (File.Exists(arq))
         {
             File.Delete(arq);
         }
-
+		
         salva = new StreamWriter(arq, true);
 
         Debug.Log(arq);
@@ -126,15 +128,20 @@ public class BD : MonoBehaviour
         salva.Write(dados);
         salva.Flush();
         salva.Close();
-
+		
+		// pega os dados
+		
         string ler = File.ReadAllText(arq);
         string[] linhas = ler.Split("\n"[0]);
         for (var i = 0; i < linhas.Length; i++)
         {
             string[] partes = linhas[i].Split(","[0]);
-
+			
+			// pega a linha cujo elemento de indice 1
+			// é o nome do átomo
             if(partes[1] == btn)
             {
+				// pega todas as informações relativas ao átomo
                 nomeBD = partes[1];
                 corBD = partes[2];
                 tamanhoBD = float.Parse(partes[3], CultureInfo.InvariantCulture.NumberFormat);
@@ -145,7 +152,9 @@ public class BD : MonoBehaviour
 
                 int posicao;
                 int tamanhoLista = atm.Count;
-
+				
+				// se a lista "atm" estiver vazia, ou o atomo de nome "btn"
+				// não estiver presente nela, incluí-lo
                 if (tamanhoLista == 0 || (posicao = atm.FindIndex(x => x.nome == nomeBD)) == -1)
                 {
                     atm.Add(new Atomos()

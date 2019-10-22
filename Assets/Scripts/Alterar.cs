@@ -11,6 +11,7 @@ using System;
 
 public class Alterar : MonoBehaviour
 {
+	// campos dos dados
     InputField txtNome;
     InputField txtUsuario;
     InputField txtSenha;
@@ -24,7 +25,9 @@ public class Alterar : MonoBehaviour
     Button btnAlteraSenha;
 
     Text txtErro;
-
+	
+	// variáveis para as
+	// informações do usuário
     string nome = null;
     string usuario = null;
     string senha = null;
@@ -32,13 +35,15 @@ public class Alterar : MonoBehaviour
     string email = null;
     string datanasc = null;
     string escolaridade = null;
-
+	
+	// data de nascimento
     int dia = 0;
     int mes = 0;
     int ano = 0;
 
     readonly string ID = Login.ID;
-
+	
+	// conteúdo da caixa de escolaridade
     readonly List<string> escolaridades = new List<string> {"Escolaridade",
                                                             "Ensino fundamental",
                                                             "Ensino médio",
@@ -48,6 +53,8 @@ public class Alterar : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
+		// pega todos os campos de texto dos objetos
+		// usados para a entrada de dados
         txtNome = GameObject.Find("txtNome").GetComponent<InputField>();
         txtUsuario = GameObject.Find("txtUsuario").GetComponent<InputField>();
         txtSenha = GameObject.Find("txtSenha").GetComponent<InputField>();
@@ -60,7 +67,8 @@ public class Alterar : MonoBehaviour
         txtErro = GameObject.Find("txtErro").GetComponent<Text>();
 
         btnAlteraSenha = GameObject.Find("btnAlteraSenha").GetComponent<Button>();
-
+		
+		// organiza a combo box da escolaridade
         dpdEscolaridade.ClearOptions();
         dpdEscolaridade.AddOptions(escolaridades);
 
@@ -73,17 +81,19 @@ public class Alterar : MonoBehaviour
     void Update()
     {
     }
-
+	
+	// retorna à cena de minha conta
     public void Voltar()
     {
         SceneManager.LoadScene("MinhaConta");
     }
-
+	
+	// função para alterar dados do usuário
     public void AlterarDados()
     {
-        Debug.Log(senha);
         txtErro.text = "";
-
+		
+		// data de nascimento
         if (txtDiaNasc.text == "") { dia = 0; }
         else { dia = int.Parse(txtDiaNasc.text); }
 
@@ -92,7 +102,8 @@ public class Alterar : MonoBehaviour
 
         if (txtAnoNasc.text == "") { ano = 0; }
         else { ano = int.Parse(txtAnoNasc.text); }
-
+		
+		// dados de texto
         nome = txtNome.text;
         usuario = txtUsuario.text;
 
@@ -104,6 +115,8 @@ public class Alterar : MonoBehaviour
         senha2 = Cadastro.ConverteSenha(txtConfirmaSenha.text);
         email = txtEmail.text;
         datanasc = ano.ToString() + "-" + mes.ToString() + "-" + dia.ToString();
+		
+		// combo box da escolaridade
         if (dpdEscolaridade.value == 0)
             escolaridade = "Escolaridade";
         if (dpdEscolaridade.value == 1)
@@ -115,22 +128,30 @@ public class Alterar : MonoBehaviour
 
         StartCoroutine(Consistencia(ID, nome, usuario, senha, senha2, email, datanasc, escolaridade));
     }
-
+	
+	// função para permitir a alteração de senha
     public void AlterarSenha()
     {
         txtSenha.interactable = true;
         txtSenha.text = "";
         btnAlteraSenha.interactable = false;
     }
-
+	
+	// traz os dados do usuário para os campos de texto
     [System.Obsolete]
     public IEnumerator CompletaCampos(string id)
     {
+		// url do script php
         string param_url = "http://200.145.153.172/atom/minhaConta.php?" +  "id=" + id;
+		
         using (UnityWebRequest url = UnityWebRequest.Get(param_url))
         {
+			// chama o script
             yield return url.Send();
 
+			// traz todos os dados e os coloca
+			// em seus respectivos campos
+			
             string[] szSplited = url.downloadHandler.text.Split(',');
 
             txtNome.text = szSplited[0];
@@ -165,15 +186,20 @@ public class Alterar : MonoBehaviour
             }
         }
     }
-
+	
+	// função para checar a consistência
+	// dos novos dados do usuário
     public IEnumerator Consistencia(string id, string nome, string usuario, string senha, string senha2, string email, string datanasc, string escolaridade)
     {
+		// url do script php
         string param_url = "http://200.145.153.172/atom/consistencia.php?" + "usuario=" + usuario;
 
         using (UnityWebRequest url = UnityWebRequest.Get(param_url))
         {
+			// executa o script
             yield return url.Send();
-
+			
+			// executa as consistências
             if (Cadastro.TestaData(dia, mes, ano))
             {
                 txtErro.text = "Data de nascimento invalida";
@@ -192,15 +218,18 @@ public class Alterar : MonoBehaviour
             }
             else
             {
+				// chama a função para alterar os dados
                 StartCoroutine(AlterarDados(id, nome, usuario, senha, email, datanasc, escolaridade));
             }
 
         }
     }
 
-
+	// função para enviar os dados alterados ao script php
+	// que os coloca no banco de dados
     public IEnumerator AlterarDados(string id, string nome, string usuario, string senha, string email, string datanasc, string escolaridade)
     {
+		// url do script
         string param_url = "http://200.145.153.172/atom/altera.php?" + "id=" + id +
                                                                        "&nome=" + nome +
                                                                        "&usuario=" + usuario +
@@ -211,15 +240,19 @@ public class Alterar : MonoBehaviour
 
         using (UnityWebRequest url = UnityWebRequest.Get(param_url))
         {
+			// executa o script
             yield return url.Send();
 
             Cadastro.ID = ID;
             Login.ID = null;
 
+			// retorna à cena de login
             SceneManager.LoadScene("Login");
         }
     }
-
+	
+	// função para chamar o script php que checa se
+	// a senha do usuário existe no banco
     public IEnumerator RetornaSenha(string id)
     {
         string param_url = "http://200.145.153.172/atom/retornaSenha.php?" + "id=" + id;
@@ -231,7 +264,8 @@ public class Alterar : MonoBehaviour
             senha = url.downloadHandler.text;
         }
     }
-
+	
+	// função para testar se todos os campos foram preenchidos
     bool TestaCampos(string nome, string usuario, string senha, string email, string datanasc, string escolaridade)
     {
         if (nome == "")

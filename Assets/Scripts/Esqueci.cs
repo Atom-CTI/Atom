@@ -11,6 +11,7 @@ using System;
 
 public class Esqueci : MonoBehaviour
 {
+	// campos dos dados
     InputField txtUsuario;
     InputField txtSenha;
     InputField txtConfirmaSenha;
@@ -18,7 +19,9 @@ public class Esqueci : MonoBehaviour
     Button btnAltera;
 
     Text txtErro;
-
+	
+	// variáveis para as
+	// informações do usuário
     string usuario = null;
     string senha = null;
     string senha2 = null;
@@ -26,6 +29,8 @@ public class Esqueci : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		// pega todos os campos de texto dos objetos
+		// usados para a entrada de dados
         txtUsuario = GameObject.Find("txtUsuario").GetComponent<InputField>();
         txtSenha = GameObject.Find("txtSenha").GetComponent<InputField>();
         txtConfirmaSenha = GameObject.Find("txtConfirmaSenha").GetComponent<InputField>();
@@ -42,23 +47,25 @@ public class Esqueci : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //usuario = txtUsuario.text;
-
-        //StartCoroutine(ConfereUsuario(usuario));
+		
     }
-
+	
+	// retorna à cena de login
     public void Voltar()
     {
         SceneManager.LoadScene("Login");
     }
-
+	
+	// função para chamar a consistência de usuário
     public void ConfirmaUsuario()
     {
         usuario = txtUsuario.text;
 
         StartCoroutine(ConfereUsuario(usuario));
     }
-
+	
+	// função que checa se os campos estão preenchidos
+	// antes de chamar a função para alteração de senha
     public void Alterar()
     {
         senha = Cadastro.ConverteSenha(txtSenha.text);
@@ -77,9 +84,11 @@ public class Esqueci : MonoBehaviour
             StartCoroutine(AlteraSenha(usuario, senha));
         }
     }
-
+	
+	// função para confirmar se o usuário existe
     public IEnumerator ConfereUsuario(string usuario)
     {
+		// url do script php de conferir usuário
         string param_url = "http://200.145.153.172/atom/confereUsuario.php?" + "usuario=" + usuario;
 
         using (UnityWebRequest url = UnityWebRequest.Get(param_url))
@@ -87,7 +96,9 @@ public class Esqueci : MonoBehaviour
             yield return url.Send();
 
             string conf = url.downloadHandler.text;
-
+			
+			// checa se o usuário existe. Se sim,
+			// permite acessar a senha
             if(conf == "1")
             {
                 btnAltera.interactable = true;
@@ -103,12 +114,15 @@ public class Esqueci : MonoBehaviour
             }
         }
     }
-
+	
+	// função que chama o script php para alteração de senha
     public IEnumerator AlteraSenha(string usuario, string senha)
     {
+		// url do script php
         string param_url = "http://200.145.153.172/atom/alteraSenha.php?" + "usuario=" + usuario +
                                                                             "&senha=" + senha;
-
+		
+		// executa o script
         using (UnityWebRequest url = UnityWebRequest.Get(param_url))
         {
             yield return url.Send();

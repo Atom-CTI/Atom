@@ -11,6 +11,7 @@ using System;
 
 public class MinhaConta : MonoBehaviour
 {
+	// campos dos dados
     Text txtNome;
     Text txtUsuario;
     Text txtSenha;
@@ -22,6 +23,8 @@ public class MinhaConta : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		// pega todos os campos de texto dos objetos
+		// usados para a entrada de dados
         txtNome = GameObject.Find("txtNome").GetComponent<Text>();
         txtUsuario = GameObject.Find("txtUsuario").GetComponent<Text>();
         txtSenha = GameObject.Find("txtSenha").GetComponent<Text>();
@@ -46,17 +49,20 @@ public class MinhaConta : MonoBehaviour
     {
 
     }
-
+	
+	// retorna à cena inicial
     public void Voltar()
     {
         SceneManager.LoadScene("Inicio");
     }
-
+	
+	// função para ir à cena de alteração de dados
     public void Alterar()
     {
         SceneManager.LoadScene("Alterar");
     }
-
+	
+	// função para retornar à tela de login
     public void Sair()
     {
         Cadastro.ID = null;
@@ -64,13 +70,16 @@ public class MinhaConta : MonoBehaviour
 
         SceneManager.LoadScene("Login");
     }
-
+	
+	// função para trazer os dados do usuário do banco
     public IEnumerator CompletaCampos(string loginID)
     {
+		// url do script php
         string param_url = "http://200.145.153.172/atom/minhaConta.php?" + "id=" + loginID;
 
         using (UnityWebRequest url = UnityWebRequest.Get(param_url))
         {
+			// executa o script
             yield return url.Send();
 
             string[] szSplited = url.downloadHandler.text.Split(',');
@@ -86,7 +95,9 @@ public class MinhaConta : MonoBehaviour
             txtEscolaridade.text = szSplited[5];
         }
     }
-
+	
+	// função para converter a data de nascimento
+	// para seu formato correto
     public static string ConverteData(string data)
     {
         string dia = data[8] + "" + data[9];

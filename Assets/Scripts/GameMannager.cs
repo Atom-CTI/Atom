@@ -17,7 +17,7 @@ public class GameMannager : MonoBehaviour
     public GameObject btncadastra;
     public GameObject tabela;
     public GameObject btnTabela;
-    public GameObject naoReage;
+	public GameObject naoReage;
 
     public static bool modocadastro;
 
@@ -25,7 +25,8 @@ public class GameMannager : MonoBehaviour
     public static List<QRs> qrs;
 
     public static int contadorQR = 0;
-
+	
+	// sprites dos átomos
     public Sprite H;
     public Sprite Li;
     public Sprite Be;
@@ -114,7 +115,8 @@ public class GameMannager : MonoBehaviour
     public Sprite Lv;
     public Sprite Ts;
     public Sprite Og;
-
+	
+	// sprites das moléculas
     public Sprite PLAGCL;
     public Sprite PLALALOOO;
     public Sprite PLALALSSS;
@@ -158,9 +160,9 @@ public class GameMannager : MonoBehaviour
     public Sprite PLOO;
     public Sprite PLCLNA;
     public Sprite PLNN;
-
+	
+	// sprite genérico
     public Sprite cardlaranja;
-    //criar sprite dos 20 produtos
 
     public static string qrName;
 
@@ -174,14 +176,14 @@ public class GameMannager : MonoBehaviour
     GameObject representacao;
     GameObject produto;
 
-    //public static List<List<string>> nomesocial;
-
     public static bool podefazerreacao;
+	
     void Start()
     {
+		// inicialização de variáveis de controle e
+		// posicionamento dos elementos da interface
         podefazerreacao = true;
         reacao = new List<string>();
-        //nomesocial = new List<List<string>>();
 
         btnvolta = GameObject.Find("btnVoltar");
         btnvolta.transform.localPosition = new Vector2(0, 10000);
@@ -201,34 +203,50 @@ public class GameMannager : MonoBehaviour
 
         atomos = new List<Atomos>();
         qrs = new List<QRs>();
-
+		
+		// cria o loop para cheque de update
         InvokeRepeating("colisaoupdate", 0, (float)1.0);
     }
-
+	
+	// lista com os nomes dos QRs que participam da reação
     public List<string> elementosreacao = new List<string>();
+	
+	// lista indicando o estado anterior da "elementosreacao"
+	public List<string> elementosreacaoaux = new List<string>();
+	
+	// guarda os objetos (Atomos) usados na reação
     public List<Atomos> atomosdareacao;
-    public List<string> elementosreacaoaux = new List<string>();
+	
+	// função repetida todo segundo, que checa se dois ou mais QRs
+	// entraram em colisão para ocorrer a reação
     private void colisaoupdate()
     {
         bool existenoelementosreacao = false;
         bool podeaddlista = false;
-
+		
+		// atravessa todos os QRs cadastrados
         for (int a = 0; a < qrs.Count; a++)
         {
             if (qrs[a].card == null)
             {
                 continue;
             }
+			// se o QR tem um átomo atrelado a ele
             else
             {
+				// se o QR estiver fora de cena, remove da lista
                 if (!qrs[a].card.GetComponent<SpriteRenderer>().enabled)
                 {
-                    elementosreacao.Remove("PL" + qrs[a].qrName); // remove da lista se qr sair de cena
+                    elementosreacao.Remove("PL" + qrs[a].qrName);
                     continue;
                 }
-
+				
+				// pega todos os colisores próximos ao QR de indice "a",
+				// num raio definido pelo "Vector3"
                 Collider[] hitColliders = Physics.OverlapBox(qrs[a].card.transform.position, new Vector3((float)90, (float)90, (float)90));
-
+				
+				// se o próprio QR for o único elemento da lista, remove-o
+				// pare impedir uma reação desnecessária
                 if (hitColliders.Length == 1)
                 {
                     bool tanalista = false;
@@ -244,19 +262,21 @@ public class GameMannager : MonoBehaviour
                     if (tanalista)
                         elementosreacao.RemoveAt(b);
                 }
-
-
-
+				
+				// atravessa o array com todos os colisores pegos
                 for (int i = 0; i < hitColliders.Length; i++)
                 {
+					// se o colisor pertencer a um card (PL*) dentro de cena
                     if (hitColliders[i].gameObject.name.Contains("PL") && hitColliders[i].gameObject.activeInHierarchy && qrs[a].card.activeInHierarchy)
                     {
-                        //Debug.Log("collider " + qrs[a].qrName + ": " + hitColliders.Length);
-                        Debug.Log(qrs[a].qrName + ": " + hitColliders[i]);
+						// se for o primeiro elemento da lista,
+						// simplesmente adicioná-lo
                         if (elementosreacao.Count == 0)
                         {
                             elementosreacao.Add("PL" + qrs[a].qrName);
                         }
+						// se não for o único elemento, checa se esse QR
+						// já está presente na lista antes de adicioná-lo
                         else
                         {
                             for (int n = 0; n < elementosreacao.Count; n++)
@@ -280,7 +300,7 @@ public class GameMannager : MonoBehaviour
                             }
 
                             podeaddlista = false;
-
+							
                             for (int x = 0; x < elementosreacao.Count; x++)
                             {
                                 if (hitColliders[i].gameObject.name.Contains(elementosreacao[x]))
@@ -294,6 +314,8 @@ public class GameMannager : MonoBehaviour
                                 existenoelementosreacao = false;
                                 continue;
                             }
+							
+							// adiciona
                             elementosreacao.Add(hitColliders[i].gameObject.name);
                         }
 
@@ -304,39 +326,29 @@ public class GameMannager : MonoBehaviour
             }
 
         }
-
-        Debug.Log("sahuashusahushushusauhashusauh");
-        Debug.Log(elementosreacao.Count);
-        Debug.Log(elementosreacaoaux.Count);
+		
+		// se não houve alteração na lista "elementosreacao",
+		// ou se ela tiver apenas um elemento, retornar
         if (elementosreacao.Equals(elementosreacaoaux) || elementosreacao.Count == 1)
         {
             return;
         }
         else
         {
-
-            /*for(int z=0;z<elementosreacao.Count;z++)
-            {
-
-            //Debug.Log("Final:   " +elementosreacao[z]);
-            }
-            //chama programa
-            elementosreacaoaux = new List<string>(elementosreacao);*/
+			// inicializa a lista dos átomos
             atomosdareacao = new List<Atomos>();
-
-            /*for(int i = 0; i < qrs.Count; i++)
-            {
-                Debug.Log("atm: " + qrs[i].atomo.nome);
-            }*/
-
+			
+			// pega os objetos (cards) identificados pelos nomes
+			// na lista "elementosreacao"
             for (int b = 0; b < elementosreacao.Count; b++)
             {
                 for (int n = 0; n < qrs.Count; n++)
                 {
-                    Debug.Log("1111111 " + qrs.Count);
-                    //Debug.Log("22222222" + elementosreacao[b]);
                     if (qrs[n].card.name.Contains(elementosreacao[b]))
                     {
+						// cada átomo guardado no objeto de um QR
+						// que participa da reação é colocado em um novo objeto
+						// e salvo na lista "atomosdareacao"
                         for (int j = 0; j < qrs[n].atomo.Count; j++)
                         {
                             Atomos novoAtomo = new Atomos();
@@ -355,15 +367,16 @@ public class GameMannager : MonoBehaviour
 
                     }
                 }
-                //Debug.Log(qrs.Find(x => x.card.name.Contains(elementosreacao[b])).atomo.nome);
-                //atomosdareacao.Add(qrs.Find(x => x.card.name.Contains(elementosreacao[b])).atomo);
             }
-
+			
+			// se não houverem ao menos dois átomos para reagir, retornar
             if (atomosdareacao.Count <= 1)
                 return;
 
             bool fazreacao = true;
-
+			
+			// checa se existem no máximo dois tipos
+			// de atomos diferentes para a reação
             string atomo1 = "", atomo2 = "";
             for (int a = 0; a < atomosdareacao.Count; a++)
             {
@@ -383,57 +396,45 @@ public class GameMannager : MonoBehaviour
                     }
 
                 }
-
-
             }
+			
+			// array equivalente à lista "atomosdareacao"
             Atomos[] atomosreaction;
+			
+			// se houverem apenas dois tipos de átomo,
+			// executar a reação
             if (fazreacao)
             {
+				// organiza a "atomosdareacao" em ordem alfabética
+				// e a converte em array
                 atomosdareacao.Sort((x, y) => string.Compare(x.nome, y.nome, System.StringComparison.Ordinal));
                 atomosreaction = atomosdareacao.ToArray();
-                for (int i = 0; i < atomosdareacao.Count; i++)
-                {
-                    Debug.Log("debug final:   " + atomosreaction[i].nome);
-                }
-
+				
+				// executa a reação
                 bool reagiu = ReacaoQuimica.reacao(atomosreaction, atomosdareacao.Count);
-
+				
+				// se a reação for bem sucedida
                 if (reagiu)
                 {
-                    Debug.Log("REAGIU");
-                    nomeproduto = "";
                     int diferenca = 0;
                     string eleanterior = "";
-                    /*for (int i = 0; i < atomosdareacao.Count; i++)
-                    {
-                        nomeproduto = nomeproduto + atomosdareacao[i].nome;
-                        if (i == 0)
-                            eleanterior = atomosdareacao[0].nome;
-                        else
-                        {
-                            if (eleanterior != atomosdareacao[i].nome)
-                            {
-                                diferenca = i;
-                                return;
-                            }
-
-                        }
-                    }*/
                     nomeproduto = "";
+					
+					// guarda os membros do "atomosdareacao"
+					// na string "nomeproduto" (em ordem alfabética)
                     for (int i = 0; i < atomosdareacao.Count; i++)
                     {
                         nomeproduto = nomeproduto + atomosdareacao[i].nome;
-
                     }
-                    Debug.Log(nomeproduto);
-
-                    //GameObject produto;
+					
+					
                     QRs final = qrs.Find(x => elementosreacao[0].Contains(x.qrName));
                     novocard = elementosreacao[0];
                     elementosreacao.RemoveAt(0);
 
                     List<int> indexremover = new List<int>();
-                    //limpar qrs e colocar produto em um deles
+					
+                    // indica quais QRs serão limpos
                     for (int a = 0; a < qrs.Count; a++)
                     {
                         for (int b = 0; b < elementosreacao.Count; b++)
@@ -444,27 +445,28 @@ public class GameMannager : MonoBehaviour
                                 {
                                     qrs.Find(x => novocard.Contains(x.qrName)).atomo.Add(qrs[a].atomo[m]);
                                 }
-                                //qrs[a].qrName = null;
-                                //qrs[a].card = null;
-                                //qrs[a].atomo = null;
                                 indexremover.Add(a);
-                                //qrs.Remove(qrs[a]); 
                             }
                         }
                     }
+					
+					// organiza os QRs a limpar
                     indexremover.Sort();
-
+					
+					// limpa os QRs
                     for (int i = indexremover.Count - 1; i >= 0; i--)
                     {
-                        Debug.Log("IT" + qrs[indexremover[i]].qrName);
-
+						// indica que o QR pode ser usado para uma nova reação
                         GameObject qrLivreReacao = GameObject.Find("IT" + qrs[indexremover[i]].qrName);
                         qrLivreReacao.GetComponent<DefaultTrackableEventHandler>().qrlivre = true;
-
+						
+						// corrige os filhos de cada QR
                         foreach (Transform child in GameObject.Find("IT" + qrs[indexremover[i]].qrName).transform)
                         {
+							// apaga o modelo e o botão invisível
                             if (child.gameObject.name.Contains("GM") || child.gameObject.name.Equals("botao"))
                                 Destroy(child.gameObject);
+							// limpa o texto e o sprite
                             else if(child.gameObject.name.Contains("PL"))
                             {
                                 GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
@@ -474,28 +476,22 @@ public class GameMannager : MonoBehaviour
 
 
                         }
-
+						
+						// remove da lista de QRs cadastrados
                         qrs.RemoveAt(indexremover[i]);
 
                     }
-
+					
+					// limpa a lista e adiciona o QR do produto a ela
                     elementosreacao.Clear();
                     elementosreacao.Add(novocard);
 
-                    for (int i = 0; i < final.atomo.Count; i++)
-                    {
-                        Debug.Log("--------------Final " + final.atomo[i].nome);
-                    }
-
                     nomeproduto = nomeproduto.ToUpper();
-
-
-
+					
+					// carrega o modelo da molécula
                     if (produto = Resources.Load("GM" + nomeproduto) as GameObject)
                     {
-                        Debug.Log("produto final " + nomeproduto);
-
-                        //apagar gm que tava - child do it que contem PL no nome
+						// apaga o modelo (GM*) e o botão do card
                         foreach (Transform child in GameObject.Find("IT" + novocard.Remove(0, 2)).transform)
                         {
                             if (child.gameObject.name.Contains("GM"))
@@ -506,46 +502,42 @@ public class GameMannager : MonoBehaviour
                             {
                                 Destroy(child.gameObject);
                             }
-                            if(child.gameObject.name.Contains("RP"))
+							if(child.gameObject.name.Contains("RP"))
                             {
                                 Destroy(child.gameObject);
                             }
                         }
-
-
-                        ////////////////////
-
-                        
-
-                        //produto = Resources.Load("GM" + nomeproduto) as GameObject;
+						
+						// instancia o modelo da molécula como filho
+						// do QR e corrige sua posição
                         qrs.Find(x => novocard.Contains(x.qrName)).gm = produto;
                         GameObject gm = Instantiate(produto) as GameObject;
                         gm.name = "GM" + nomeproduto;
                         gm.transform.parent = GameObject.Find("IT" + novocard.Remove(0, 2)).transform;
-                        //posicao
                         gm.transform.localPosition = new Vector3(0, 1, 0);
-                        // tamanho
                         gm.transform.localScale = new Vector3((float)1, (float)1, (float)1);
-
-
+						
+						// carrega o sprite com o nome do elemento
+						// em cima do QR
                         System.Reflection.FieldInfo campo = this.GetType().GetField("PL" + nomeproduto);
-                        //        Debug.Log(campo);
                         Sprite result = (Sprite)campo.GetValue(this);
                         GameObject.Find(novocard).GetComponent<SpriteRenderer>().sprite = result;
                         GameObject.Find(novocard).transform.localScale = new Vector3((float)0.15, (float)0.15, (float)0.15);
                         qrs.Find(x => novocard.Contains(x.qrName)).card = GameObject.Find(novocard);
-
-                        if (GameObject.Find("RP" + nomeproduto) == null)
+						
+						// carrega a representação gráfica da molécula
+						// e a mostra temporáriamente
+                        if(GameObject.Find("RP"+nomeproduto) == null)
                         {
                             if (representacao = Resources.Load("RP" + nomeproduto) as GameObject)
                             {
                                 StartCoroutine("Wait");
                             }
-                            else
-                                Debug.Log("nao tem RP");
                         }
                         
-                        
+                        // cria um botão invisível para registrar
+						// o clique que abre o cartão com informações
+						// da molécula
                         GameObject botao = new GameObject();
                         botao.name = "botao";
                         botao.transform.parent = gm.transform.parent;
@@ -558,12 +550,13 @@ public class GameMannager : MonoBehaviour
                         BoxCollider botaoCollider = botao.AddComponent<BoxCollider>();
                         botaoCollider.size = new Vector3(1, (float)0.4, 1);
                         
-                    } //if
+                    }
+					// se não houver uma representação gráfica da molécula
                     else
                     {
                         Wait3(3);
-                        Debug.Log("eeeeeeeeeeeeeeeeeeeeee" + nomeproduto);
                         string ultimo = "";
+						
                         if (atomosdareacao[0].eletroNeg > atomosdareacao[diferenca].eletroNeg)
                         {
                             int val = atomosdareacao.Count - diferenca;
@@ -579,8 +572,6 @@ public class GameMannager : MonoBehaviour
                             ultimo = atomosdareacao[0].nome + atomosdareacao.Count;
                         }
 
-                        Debug.Log("sauhsauhasuhsahusauhsahusauhasuhsahuashusa" + ultimo);
-
                         foreach (Transform child in GameObject.Find("IT" + novocard.Remove(0, 2)).transform)
                         {
                             if (child.gameObject.name.Contains("GM"))
@@ -591,14 +582,14 @@ public class GameMannager : MonoBehaviour
                         }
 
                         
-                        //CRIA CARD LARANJA
+                        // cria card genérico
                         System.Reflection.FieldInfo camp = this.GetType().GetField("cardlaranja");
                         Sprite cardorange = (Sprite)camp.GetValue(this);
                         GameObject.Find(novocard).GetComponent<SpriteRenderer>().sprite = cardorange;
                         GameObject.Find(novocard).transform.localScale = new Vector3((float)0.15, (float)0.15, (float)0.15);
                         qrs.Find(x => novocard.Contains(x.qrName)).card = GameObject.Find(novocard);
 
-                        
+                        // escreve o nome da molécula acima do card criado
                         foreach(Transform child in GameObject.Find(novocard).transform)
                         {
                             if(child.gameObject.name.Contains("Text"))
@@ -608,50 +599,34 @@ public class GameMannager : MonoBehaviour
                                 return;
                             }
                         }
-                        
-
-
                     }
-                    
                 }
-                else
-                {
-                    Debug.Log("Nao reagiu");
-                    naoReage.transform.localPosition = new Vector2(0, 0);
-
-
-                    //debug nao reagui na tela
-
-                }
-
-                // alterar essa funcao para retornar corretamente o objeto
-                // objeto contendo lista de ligacoes e string com o nome da molecula
+				else
+				{
+					// se não reagiu
+					naoReage.transform.localPosition = new Vector2(0, 0);
+				}
             }
-
         }
-
-
     }
-
-
+	
+	// função que espara dois segundos após a reação
+	// e cria a representação alternativa da molécula
     public IEnumerator Wait()
     {
-        //representacao = Resources.Load("RP" + nomeproduto) as GameObject;
-
         yield return new WaitForSeconds(2);
         Destroy(GameObject.Find("GM" + nomeproduto));
         GameObject gm = Instantiate(representacao) as GameObject;
         gm.name = "RP" + nomeproduto;
         gm.transform.parent = GameObject.Find("IT" + novocard.Remove(0, 2)).transform;
-        //posicao
         gm.transform.localPosition = new Vector3(0, (float)1.5, (float)-0.5);
-        // tamanho
-        gm.transform.localScale = new Vector3(1, 1, 1);
+        gm.transform.localScale = new Vector3((float)0.04, (float)0.04, (float)0.04);
 
         StartCoroutine("Wait2");
 
     }
-
+	
+	// função que reverte a ação de "Wait"
     public IEnumerator Wait2()
     {
 
@@ -660,12 +635,11 @@ public class GameMannager : MonoBehaviour
         GameObject gm = Instantiate(produto) as GameObject;
         gm.name = "GM" + nomeproduto;
         gm.transform.parent = GameObject.Find("IT" + novocard.Remove(0, 2)).transform;
-        //posicao
         gm.transform.localPosition = new Vector3(0, 1, 0);
-        // tamanho
         gm.transform.localScale = new Vector3((float)1, (float)1, (float)1);
     }
-
+	
+	// função para esperar um determinado número de segundos
     public IEnumerator Wait3(int tempo)
     {
         yield return new WaitForSeconds(tempo);
@@ -678,7 +652,7 @@ public class GameMannager : MonoBehaviour
     }
 
     
-
+	// função para sair do modo de cadastro de QR
     public void voltar()
     {
         btnvolta.transform.localPosition = new Vector2(0, 10000);
@@ -691,8 +665,8 @@ public class GameMannager : MonoBehaviour
         DefaultTrackableEventHandler.modocadastrar = false;
         DefaultTrackableEventHandler.cadastro = false;
     }
-
-
+	
+	// função para entrar no modo de cadastro de QR
     public void CadastrarQr()
     {
         modocadastro = true;
@@ -705,8 +679,9 @@ public class GameMannager : MonoBehaviour
 
         btncadastra.transform.localPosition = new Vector2(0, 10000);
     }
-
-
+	
+	// função que atribui um elemento da tabela periódica
+	// ao card selecionado
     public void AtribuiBotao(string btn)
     {
         int indice = BD.Banco(btn, atomos);
@@ -715,16 +690,15 @@ public class GameMannager : MonoBehaviour
         qrs.Add(qr);
 
         System.Reflection.FieldInfo campo = this.GetType().GetField(btn);
-        //        Debug.Log(campo);
         Sprite result = (Sprite)campo.GetValue(this);
-        //        Debug.Log(result);
 
         qr.Cadastrar(btn, result);
 
         voltar();
         tabela.transform.localPosition = new Vector2(0, 10000);
     }
-
+	
+	// função que limpa todos os QRs com elementos cadastrados
     public void Lixeira()
     {
         GameObject[] apagaQrs = GameObject.FindGameObjectsWithTag("QR");
@@ -742,15 +716,15 @@ public class GameMannager : MonoBehaviour
                     GameObject.Find(child.gameObject.name).GetComponent<SpriteRenderer>().sprite = null;
                     GameObject.Find(child.gameObject.name).GetComponentInChildren<TextMeshPro>().text = "";
                 }
-
-                if (child.gameObject.name.Equals("botao"))
+				
+				if (child.gameObject.name.Equals("botao"))
                     Destroy(child.gameObject);
                 if (child.gameObject.name.Contains("RP"))
                     Destroy(child.gameObject);
             }
         }
 
-        for (int i = 0; i < qrs.Count; i++)
+        for (int i = 0; i < qrs.Count-1; i++)
         {
             qrs.RemoveAt(i);
         }

@@ -16,7 +16,8 @@ public class Sobre : MonoBehaviour
     {
 
     }
-
+	
+	// retorna à cena inicial
     public void Voltar()
     {
         SceneManager.LoadScene("Inicio");

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public static class ReacaoQuimica
 {
+	// indica qual a ligação entre os atomos
     public enum TipoLigacao { SIMPLES, DUPLA, TRIPLA, DATIVA, ERRO }
 
+	// estrutura para ligar dois atomos
     public struct Ligacao
     {
         public Atomos primeiro;
@@ -14,6 +16,7 @@ public static class ReacaoQuimica
         public TipoLigacao tipo;
     }
 
+	// cria uma ligação entre dois atomos (primeiro e segundo) da "Atomos[] lista"
     public static Ligacao criarLigacao(Atomos[] lista, int primeiro, int segundo)
     {
         Ligacao novaLigacao = new Ligacao();
@@ -24,47 +27,45 @@ public static class ReacaoQuimica
             (lista[primeiro].eletronsAtuais >= 8 || lista[segundo].eletronsAtuais >= 8 ||
              lista[primeiro].eletronsAtuais <= 0 || lista[segundo].eletronsAtuais <= 0))
         {
-            ////////////
+            // erro
             novaLigacao.tipo = TipoLigacao.ERRO;
             return novaLigacao;
         }
+		// ligação tripla
         else if (lista[primeiro].eletronsDisponiveis >= 3 && lista[segundo].eletronsDisponiveis >= 3 &&
                 (lista[primeiro].eletronsAtuais <= 5 && lista[segundo].eletronsAtuais <= 5))
         {
             novaLigacao.tipo = TipoLigacao.TRIPLA;
             mudanca = 3;
         }
+		// ligação dupla
         else if (lista[primeiro].eletronsDisponiveis >= 2 && lista[segundo].eletronsDisponiveis >= 2 &&
                 (lista[primeiro].eletronsAtuais <= 6 && lista[segundo].eletronsAtuais <= 6))
         {
             novaLigacao.tipo = TipoLigacao.DUPLA;
             mudanca = 2;
         }
+		// ligação simples
         else if (lista[primeiro].eletronsDisponiveis >= 1 && lista[segundo].eletronsDisponiveis >= 1 &&
                 (lista[primeiro].eletronsAtuais <= 7 && lista[segundo].eletronsAtuais <= 7))
         {
             novaLigacao.tipo = TipoLigacao.SIMPLES;
             mudanca = 1;
-			/*Debug.Log("**** " + lista[primeiro].eletronsAtuais);
-			Debug.Log("**** " + lista[primeiro].eletronsDisponiveis);
-			Debug.Log("**** " + lista[segundo].eletronsAtuais);
-			Debug.Log("**** " + lista[segundo].eletronsDisponiveis);*/
         }
 
+		// atualiza as informações para a ligação
         lista[primeiro].eletronsAtuais += mudanca;
         lista[segundo].eletronsAtuais += mudanca;
 
         lista[primeiro].eletronsDisponiveis -= mudanca;
         lista[segundo].eletronsDisponiveis -= mudanca;
-
+		
+		// colocq informações em "novaLigação"
         novaLigacao.primeiro = lista[primeiro];
         novaLigacao.segundo = lista[segundo];
 
         novaLigacao.primeiro.ligado++;
         novaLigacao.segundo.ligado++;
-
-        //Debug.Log(lista[primeiro].eletronsAtuais);
-        //Debug.Log(lista[primeiro].eletronsDisponiveis);
 
         return novaLigacao;
     }
@@ -129,16 +130,11 @@ public static class ReacaoQuimica
             }
         }
 
-        //Debug.Log(grupo);
-        //Debug.Log(naoBalanceado[0]);
-        //Debug.Log(naoBalanceado[1]);
-        //Debug.Log(lista[naoBalanceado[0]].ligado);
-        //Debug.Log(lista[naoBalanceado[1]].ligado);
-
         // dativa
 
         if (separador != 0 && (!lista[0].nome.Equals("H") && !lista[tamanho - 1].nome.Equals("H")))
         {
+			// checa a existência de elementos não ligados
             Atomos[] resto = new Atomos[10];
             int indiceResto = 0;
             for (int i = 0; i < tamanho; i++)
@@ -157,12 +153,8 @@ public static class ReacaoQuimica
                 int recebeAtual = 0;
                 int daAtual = separador;
                 
-				//Debug.Log("****" + resto[recebeAtual].ligado);
-				//Debug.Log("****" + lista[daAtual].eletronsDisponiveis);
                 while ((resto[recebeAtual].ligado == 0 || resto[recebeAtual].eletronsAtuais != 8) && lista[daAtual].eletronsDisponiveis >= 2)
                 {
-                    /*Debug.Log(resto[recebeAtual].ligado);
-                    Debug.Log(lista[daAtual].eletronsDisponiveis);*/
 
                     resto[recebeAtual].eletronsAtuais += 2;
                     lista[daAtual].eletronsDisponiveis -= 2;
@@ -276,15 +268,6 @@ public static class ReacaoQuimica
                 listaLigacao[sucessos++] = novaLigacao;
             }
         }
-		
-		
-		
-		
-		/*for(int i = 0; i < tamanho; i++) {
-			Debug.Log("nome: " + lista[i].nome);
-			Debug.Log("atua: " + lista[i].eletronsAtuais);
-			Debug.Log("disp: " + lista[i].eletronsDisponiveis);
-		}*/
 
         int numeroUm = separador;
         int numeroDois = tamanho - separador;
@@ -324,16 +307,9 @@ public static class ReacaoQuimica
             listaLigacaoFinal[k] = listaLigacao[i];
             k++;
         }
-		
-		/*for(int i = 0; i < k; i++) {
-			Debug.Log("**** " + listaLigacaoFinal[i].primeiro.nome + " + " + listaLigacaoFinal[i].segundo.nome);
-		}*/
 
         for (int i = 0; i < tamanho; i++)
         {
-            /*Debug.Log(listaLigacaoFinal[0].primeiro.ligado);
-            Debug.Log(lista[i].eletronsAtuais);
-            Debug.Log(lista[i].eletronsDisponiveis);*/
             if ((lista[i].eletronsDisponiveis != 0 &&
                 lista[i].eletronsAtuais < 8) ||
                 lista[i].ligado == 0)

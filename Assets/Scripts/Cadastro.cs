@@ -10,6 +10,7 @@ using System.Globalization;
 
 public class Cadastro : MonoBehaviour
 {
+	// campos dos dados
     InputField txtNome;
     InputField txtUsuario;
     InputField txtSenha;
@@ -20,7 +21,9 @@ public class Cadastro : MonoBehaviour
     InputField txtAnoNasc;
     Dropdown dpdEscolaridade;
     Text txtErro;
-
+	
+	// variáveis para as
+	// informações do usuário
     public static string ID = null;
     string nome = null;
     string usuario = null;
@@ -29,18 +32,22 @@ public class Cadastro : MonoBehaviour
     string email = null;
     string datanasc = null;
     string escolaridade = null;
-
+	
+	// data de nascimento
     int dia = 0;
     int mes = 0;
     int ano = 0;
-
+	
+	// conteúdo da caixa de escolaridade
     readonly List<string> escolaridades = new List<string> {"Escolaridade",
                                                   "Ensino fundamental",
                                                   "Ensino médio",
                                                   "Ensino superior" };
-
+	
     void Start()
     {
+		// pega todos os campos de texto dos objetos
+		// usados para a entrada de dados
         txtNome = GameObject.Find("txtNome").GetComponent<InputField>();
         txtUsuario = GameObject.Find("txtUsuario").GetComponent<InputField>();
         txtSenha = GameObject.Find("txtSenha").GetComponent<InputField>();
@@ -51,7 +58,8 @@ public class Cadastro : MonoBehaviour
         txtAnoNasc = GameObject.Find("txtAnoNasc").GetComponent<InputField>();
         dpdEscolaridade = GameObject.Find("dpdEscolaridade").GetComponent<Dropdown>();
         txtErro = GameObject.Find("txtErro").GetComponent<Text>();
-
+		
+		// organiza a combo box da escolaridade
         dpdEscolaridade.ClearOptions();
         dpdEscolaridade.AddOptions(escolaridades);
     }
@@ -59,11 +67,13 @@ public class Cadastro : MonoBehaviour
     void Update()
     {
     }
-
+	
+	// função para cadastrar um usuário com os dados inseridos
     public void Cadastrar()
     {
         txtErro.text = "";
-
+		
+		// data de nascimento
         if(txtDiaNasc.text == "") { dia = 0; }
         else { dia = int.Parse(txtDiaNasc.text); }
 
@@ -72,13 +82,16 @@ public class Cadastro : MonoBehaviour
 
         if(txtAnoNasc.text == "") { ano = 0; }
         else { ano = int.Parse(txtAnoNasc.text); }
-
+		
+		// dados de texto
         nome = txtNome.text;
         usuario = txtUsuario.text;
         senha = ConverteSenha(txtSenha.text);
         senha2 = ConverteSenha(txtConfirmaSenha.text);
         email = txtEmail.text;
         datanasc = ano.ToString() + "-" + mes.ToString() + "-" + dia.ToString();
+		
+		// combo box da escolaridade
         if (dpdEscolaridade.value == 0)
             escolaridade = "Escolaridade";
         if (dpdEscolaridade.value == 1)
@@ -87,48 +100,60 @@ public class Cadastro : MonoBehaviour
             escolaridade = "Ensino Médio";
         if (dpdEscolaridade.value == 3)
             escolaridade = "Ensino Superior";
-
+		
+		// função para consistência de dados
         StartCoroutine(Consistencia(nome, usuario, senha, senha2, email, datanasc, escolaridade));
     }
-
+	
+	// retorna à cena de login
     public void Voltar()
     {
         SceneManager.LoadScene("Login");
     }
 
+	// função que chama um script php externo para
+	// inserir os dados no banco
     [System.Obsolete]
     public static IEnumerator Cadastra(string nome, string usuario, string senha, string email, string datanasc, string escolaridade)
     {
+		// url do script com os parâmetros do usuário
         string param_url = "http://200.145.153.172/atom/cadastro.php?" + "nome=" + nome + 
                                                                    "&usuario=" + usuario + 
                                                                    "&senha=" + senha + 
                                                                    "&email=" + email + 
                                                                    "&datanasc=" + datanasc + 
                                                                    "&escolaridade=" + escolaridade;
+		
+		// executa o script php
         using (UnityWebRequest url = UnityWebRequest.Get(param_url))
         {
             yield return url.Send();
 
             ID = url.downloadHandler.text;
         }
-
+		
+		// retorna à cena de login
         SceneManager.LoadScene("Login");
     }
 
+	// função para a consistência dos dados do usuário
     [System.Obsolete]
     public IEnumerator Consistencia(string nome, string usuario, string senha, string senha2, string email, string datanasc, string escolaridade)
     {
+		// script php para checar se o usuário já existe
         string param_url = "http://200.145.153.172/atom/consistencia.php?" + "usuario=" + usuario;
-
+		
+		// executa o script
         using (UnityWebRequest url = UnityWebRequest.Get(param_url))
         {
             yield return url.Send();
-
+			
             string consist = url.downloadHandler.text;
             if (consist == "0")
             {
                 txtErro.text = "Usuario já existente";
             }
+			// outras consistências
             else if (TestaData(dia, mes, ano))
             {
                 txtErro.text = "Data de nascimento invalida";
@@ -145,6 +170,7 @@ public class Cadastro : MonoBehaviour
             {
                 txtErro.text = "As senhas não são correspondentes";
             }
+			// se não houver nenhum erro, cadastra
             else
             {
                 StartCoroutine(Cadastra(nome, usuario, senha, email, datanasc, escolaridade));
@@ -152,7 +178,8 @@ public class Cadastro : MonoBehaviour
             
         }
     }
-
+	
+	// função para criptografar a senha
     public static string ConverteSenha(string value)
     {
         UnicodeEncoding encoding = new UnicodeEncoding();
@@ -168,7 +195,8 @@ public class Cadastro : MonoBehaviour
 
         return hashValue.ToString();
     }
-
+	
+	// função para checar a data de nascimento
     public static bool TestaData(int dia, int mes, int ano)
     {
         if (dia <= 0 || dia > 31)
@@ -188,7 +216,8 @@ public class Cadastro : MonoBehaviour
             return false;
         }
     }
-
+	
+	// função para checar se os campos foram preenchidos
     public static bool TestaCampos(string nome, string usuario, string senha, string email, string datanasc, string escolaridade)
     {
         if(nome == "")
@@ -221,7 +250,8 @@ public class Cadastro : MonoBehaviour
         }
 
     }
-
+	
+	// função para checar se o e-mail é válido
     public static bool TestaEmail(string email)
     {
         try
@@ -234,7 +264,9 @@ public class Cadastro : MonoBehaviour
             return true;
         }
     }
-
+	
+	// função para testar se ambas as
+	// senhas são iguais
     public static bool TestaSenhas(string senha, string senha2)
     {
         if(senha == senha2)

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+	// declarações
+	
     public GameObject painel;
     private Controler cont;
 
@@ -18,9 +20,13 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		// pega o pai de todos os botões para mudar de tela
+		// e o script com as animações do menu
         painel = GameObject.Find("Panel");
         cont = painel.GetComponent<Controler>();
-
+		
+		// define que o botão "btnMinhaConta" apenas pode ser clicado
+		// se o usuário estiver logado
         btnMinhaConta = GameObject.Find("btnMinhaConta").GetComponent<Button>();
         imgMinhaConta = GameObject.Find("imgMinhaConta").GetComponent<Image>();
         tampaMinhaConta = GameObject.Find("tampaMinhaConta").GetComponent<Image>();
@@ -44,17 +50,20 @@ public class Menu : MonoBehaviour
     {
 
     }
-
+	
+	// animação de abrir o menu
     public void Abrir()
     {
         cont.anima();
     }
 
+	// animação de fechar o menu
     public void Fechar()
     {
         cont.animas();
     }
 
+	// carrega as cenas relacionadas com cada botão
     public void PDF()
     {
         SceneManager.LoadScene("PDF");

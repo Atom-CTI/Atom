@@ -16,11 +16,14 @@ public class Controler : MonoBehaviour
     {
         
     }
-
+	
+	// chama animação para abrir o menu
     public void anima()
     {
         anim.SetInteger("Move", 1);
     }
+	
+	// chama animação para fechar o menu
     public void animas()
     {
         anim.SetInteger("Move2", 1);

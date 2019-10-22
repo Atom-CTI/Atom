@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// objecto para armazenar todas as características de um átomo
+// tanto para reação quanto para vizualização
 public class Atomos : MonoBehaviour
 {
     public string nome;

@@ -16,6 +16,7 @@ public class InfoCard : MonoBehaviour
         
     }
 	
+	// destrói o card quando o colisor do botão for clicado
 	void OnMouseDown()
 	{
 		Destroy(gameObject);

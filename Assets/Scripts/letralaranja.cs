@@ -13,6 +13,8 @@ public class letralaranja : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		// atualiza a posição da letra do card laranja genérico,
+		// centralizando-a no card
         this.transform.localPosition = new Vector3(0, 0, 0);
     }
 }

@@ -16,12 +16,14 @@ public class Sair : MonoBehaviour
     {
 
     }
-
+	
+	// retornar a cena início 
     public void Voltar()
     {
         SceneManager.LoadScene("Inicio");
     }
-
+	
+	// sair da conta e retornar à tela login
     public void Sim()
     {
         Cadastro.ID = null;

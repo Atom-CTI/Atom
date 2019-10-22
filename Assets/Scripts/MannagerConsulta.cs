@@ -7,7 +7,8 @@ public class MannagerConsulta : MonoBehaviour
 {
 
     public GameObject tabela;
-
+	
+	// sprites dos átomos
     public Sprite H;
     public Sprite Li;
     public Sprite Be;
@@ -100,6 +101,9 @@ public class MannagerConsulta : MonoBehaviour
     public bool molecula = false;
 
     public static List<Atomos> atomos;
+	
+	// inicia a lista de atomos, e posiciona
+	// a tabela periódica na tela
     void Start()
     {
         atomos = new List<Atomos>();
@@ -117,77 +121,67 @@ public class MannagerConsulta : MonoBehaviour
 
     string btn1 = "";
     string nomeAtomo = "";
+	
+	// função que seleciona um elemento da tabela periódica
+	// para ser representado na tela
     public void AtribuiBotao(string btn)
     {
+		// pega o nome do elemento selecionado
         btn1 = btn;
         int indice = BD.Banco(btn, atomos);
         Atomos atomo = atomos[indice];
-
+		
+		// pega o sprite do átomo
         System.Reflection.FieldInfo campo = this.GetType().GetField(btn);
         Sprite result = (Sprite)campo.GetValue(this);
-
+		
+		// atribui o sprite ao plano
         GameObject card = GameObject.Find("Plano");
         card.GetComponent<Renderer>().enabled = true;
         card.GetComponent<SpriteRenderer>().sprite = result;
 
-
+		// gera o modelo (GM*) do átomo
         nomeAtomo = "atomo_" + atomo.valencia + "e";
         GameObject objPrefab = Resources.Load(nomeAtomo) as GameObject;
         GameObject gm = Instantiate(objPrefab) as GameObject;
         gm.name = "GMConsulta";
-
-
-        //posicao
-        //gm.transform.parent = GameObject.Find("pai").transform;
         gm.transform.position = new Vector3(315, 803, -450);
-        // tamanho
         gm.transform.localScale = new Vector3(500*(float)atomo.tamanho, 500*(float)atomo.tamanho, 500* (float)atomo.tamanho);
-        //cor
         string cor = atomo.cor;
-        //Debug.Log((Color)typeof(Color).GetProperty(cor.ToLowerInvariant()).GetValue(null, null));
         gm.GetComponent<Renderer>().material.color = (Color)typeof(Color).GetProperty(cor.ToLowerInvariant()).GetValue(null, null);
-        //gm.transform.RotateAround(atomo.transform.position, gm.transform.forward, 100 * Time.deltaTime);
 
-        //letra
+        // carrega modelo da letra do átomo
         molecula = true;
-
         GameObject letra = Resources.Load(atomo.nome) as GameObject;
-
-
         GameObject GMletra = Instantiate(letra) as GameObject;
-
-
+		
         GMletra.transform.parent = GameObject.Find(gm.name).transform;
         GMletra.name = "Letra" + atomo.nome;
         GMletra.transform.localPosition = new Vector3(-(((float)0.5 - (float)atomo.tamanho) * (float)0.25 + (float)0.10), 0, (float)-(GameObject.Find(gm.name).GetComponent<SphereCollider>().radius));
         GMletra.transform.localRotation = new Quaternion((float)0, (float)0, (float)0, 0);
         GMletra.transform.Rotate(0, 180, 0);
-        //GMletra.transform.localScale = new Vector3((float)atomo.tamanho*(float)0.03, (float)atomo.tamanho * (float)0.03, (float)atomo.tamanho * (float)0.03);
         GMletra.transform.localScale = new Vector3((float)0.03, (float)0.03, (float)0.03);
 
 
-        //jogar botao p tela
+        // coloca na tela o botão invisível para mostrar
+		// as informações do átomo
         GameObject bt = GameObject.Find("btnInfo");
         bt.transform.localPosition = new Vector3((float)0, (float)-1500, (float)0);
 
         tabela.transform.localPosition = new Vector2(0, 10000);
     }
-
+	
+	// função para mostrar as informações do átomo
     public void clicou()
     {
-        Debug.Log("click");
-
-
-        //pegar nome elemento
+        // pega o nome elemento
         string nomeproduto = btn1;
-        //Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaa" + btn1);
-
-
+		
+		// cria o objeto do card de informações
+		// do atomo selecionado
         if (GameObject.Find("infoCard") == null)
         {
-            //Debug.Log("asuhasuhasuhasuhasuhasuh");
             Sprite spriteCard = Resources.Load<Sprite>("IN" + nomeproduto);
-            Debug.Log("IN" + nomeproduto);
             if (spriteCard == null)
             {
                 return;
@@ -202,25 +196,26 @@ public class MannagerConsulta : MonoBehaviour
             infoCard.AddComponent<InfoCard>();
         }
     }
-
+	
+	// função para apagar o modelo e card do átomo
     public void Lixeira()
     {
+		// apaga o sprite do plano
         GameObject card = GameObject.Find("Plano");
         card.GetComponent<Renderer>().enabled = false;
         card.GetComponent<SpriteRenderer>().sprite = null;
-
-
+		
+		// remove o botão invisível
         GameObject bt = GameObject.Find("btnInfo");
         bt.transform.localPosition = new Vector3((float)1000, (float)-430, (float)0);
-
-
+		
+		// apaga o modelo do átomo
         Destroy(GameObject.Find("GMConsulta"));
         molecula = false;
         tabela.transform.localPosition = new Vector2(45, 0);
-
-
     }
-
+	
+	// retorna à cena inicial
     public void Volta()
     {
         SceneManager.LoadScene("Inicio");

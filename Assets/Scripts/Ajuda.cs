@@ -10,13 +10,13 @@ public class Ajuda : MonoBehaviour
     {
         
     }
-
-	//Dea passou por aqui kk :) mochetti viado kkkkKKKKKKKK
+	
     void Update()
     {
         
     }
-
+	
+	// retorna à cena inicial
     public void Voltar()
     {
         SceneManager.LoadScene("Inicio");

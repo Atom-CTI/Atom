@@ -10,8 +10,7 @@ using System.Globalization;
 
 public class Login : MonoBehaviour
 {
-    // Start is called before the first frame update
-
+	// campos dos dados
     InputField txtUsuario;
     InputField txtSenha;
     Text txtErro;
@@ -22,10 +21,13 @@ public class Login : MonoBehaviour
 
     void Start()
     {
+		// pega todos os campos de texto dos objetos
+		// usados para a entrada de dados
         txtUsuario = GameObject.Find("txtUsuario").GetComponent<InputField>();
         txtSenha = GameObject.Find("txtSenha").GetComponent<InputField>();
         txtErro = GameObject.Find("txtErro").GetComponent<Text>();
-
+		
+		
         if(Cadastro.ID != null)
         {
             StartCoroutine(CompletaCampos(Cadastro.ID));
@@ -37,11 +39,13 @@ public class Login : MonoBehaviour
     {
         
     }
-
+	
+	// função para checar se o usuário é
+	// administrador antes de logar
     public void Logar()
     {
         txtErro.text = "";
-
+		
         if(txtUsuario.text == "admin" && txtSenha.text == "admin")
         {
             ID = "0";
@@ -54,26 +58,31 @@ public class Login : MonoBehaviour
         }
 
     }
-
+	
+	// função para carregar a cena de cadastro
     public void Cadastrar()
     {
         SceneManager.LoadScene("Cadastrar");
     }
 
+	// função para carregar a cena de recuperação de senha
     public void Esqueci()
     {
         SceneManager.LoadScene("Esqueci");
     }
-
+	
+	// função para entrar como convidado
     public void Convidado()
     {
         ID = "1";
 
         SceneManager.LoadScene("Inicio");
     }
-
+	
+	
     public IEnumerator CompletaCampos(string cadastroID)
     {
+		// url do script php
         string param_url = "http://200.145.153.172/atom/completaCampos.php?" + "id=" + cadastroID;
 
         using (UnityWebRequest url = UnityWebRequest.Get(param_url))
@@ -85,21 +94,24 @@ public class Login : MonoBehaviour
             senha = szSplited[1];
 
             txtUsuario.text = usuario;
-            //txtSenha.text = senha;
         }
     }
 
+	// função para efetuar o login
     public IEnumerator Logar(string usuario, string senha)
     {
+		// url do script php de login
         string param_url = "http://200.145.153.172/atom/login.php?" + "usuario=" + usuario +
                                                                 "&senha=" + senha;
-
+		
+		// executa o script
         using (UnityWebRequest url = UnityWebRequest.Get(param_url))
         {
             yield return url.Send();
 
             string[] szSplited = url.downloadHandler.text.Split(',');
-
+			
+			// checa se o usuário e senha existem no banco
             if (szSplited[0] == "1")
             {
                 ID = szSplited[1];

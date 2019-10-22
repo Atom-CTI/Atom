@@ -18,11 +18,13 @@ public class InfoElemento : MonoBehaviour
 	
 	void OnMouseDown()
 	{
-        Debug.Log("click");
+		// pega o pai (IT*) do gameObject que foi clicado
 		Transform pai = gameObject.transform.parent;
 		
 		QRs thisQr = null;
 		string nomeproduto = null;
+		
+		// pega o nome do produto relacionado ao pai
 		for(int i = 0; i < GameMannager.qrs.Count; i++)
 		{
 			if(pai.name.Contains(GameMannager.qrs[i].qrName))
@@ -36,14 +38,17 @@ public class InfoElemento : MonoBehaviour
 			}
 		}
 		
+		// criação do card
 		if(GameObject.Find("infoCard") == null)
 		{
-            Debug.Log("innnnnnn " + nomeproduto);
+			// carrega sprite do produto cadastrado
             Sprite spriteCard = Resources.Load<Sprite>("IN" + nomeproduto);
             if (spriteCard == null)
             {
                 return;
             }
+			
+			// cria e posiciona o card no centro da tela
             GameObject infoCard = new GameObject("infoCard");
 			infoCard.AddComponent<SpriteRenderer>();
             infoCard.GetComponent<SpriteRenderer>().sprite = spriteCard;
@@ -51,6 +56,7 @@ public class InfoElemento : MonoBehaviour
 			infoCard.transform.localScale = new Vector3((float)0.05, (float)0.05, (float)0.05);
 			infoCard.AddComponent<BoxCollider>();
 			
+			// adiciona no card o script para fechá-lo
 			infoCard.AddComponent<InfoCard>();
 		}
 	}
