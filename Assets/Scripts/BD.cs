@@ -89,7 +89,8 @@ public class BD : MonoBehaviour
                     "243,Ar,blue,0.6,8,0,nobre,0\n" +
                     "244,Kr,blue,0.65,8,0,nobre,0\n" +
                     "245,Xe,blue,0.7,8,0,nobre,0\n" +
-                    "246,Rn,blue,0.733,8,0,nobre,0\n";
+                    "246,Rn,blue,0.733,8,0,nobre,0\n" +
+                    "247,Og,blue,0.75,8,0,nobre,0";
 
     public static string arq;
     public static StreamWriter salva;

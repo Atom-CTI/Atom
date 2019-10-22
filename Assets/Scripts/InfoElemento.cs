@@ -38,6 +38,7 @@ public class InfoElemento : MonoBehaviour
 		
 		if(GameObject.Find("infoCard") == null)
 		{
+            Debug.Log("innnnnnn " + nomeproduto);
             Sprite spriteCard = Resources.Load<Sprite>("IN" + nomeproduto);
             if (spriteCard == null)
             {

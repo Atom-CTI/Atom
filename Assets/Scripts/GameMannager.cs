@@ -17,6 +17,7 @@ public class GameMannager : MonoBehaviour
     public GameObject btncadastra;
     public GameObject tabela;
     public GameObject btnTabela;
+    public GameObject naoReage;
 
     public static bool modocadastro;
 
@@ -505,6 +506,10 @@ public class GameMannager : MonoBehaviour
                             {
                                 Destroy(child.gameObject);
                             }
+                            if(child.gameObject.name.Contains("RP"))
+                            {
+                                Destroy(child.gameObject);
+                            }
                         }
 
 
@@ -612,8 +617,8 @@ public class GameMannager : MonoBehaviour
                 else
                 {
                     Debug.Log("Nao reagiu");
-                    
-                        
+                    naoReage.transform.localPosition = new Vector2(0, 0);
+
 
                     //debug nao reagui na tela
 
