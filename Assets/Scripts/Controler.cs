@@ -26,6 +26,6 @@ public class Controler : MonoBehaviour
 	// chama animação para fechar o menu
     public void animas()
     {
-        anim.SetInteger("Move2", 1);
+        anim.SetInteger("Move", 2);
     }
 }

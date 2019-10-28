@@ -3,19 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
-
+using UnityEngine.UI;
 
 public class PDF : MonoBehaviour
 {
     string verif;
     string email;
+    Button btnBaixar;
+    GameObject tampaDownload;
 
     readonly string ID = Login.ID;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        btnBaixar = GameObject.Find("btnDownload").GetComponent<Button>();
+        tampaDownload = GameObject.Find("tampaDownload");
+
+        if (Login.ID == "1" || Login.ID == null)
+        {
+            btnBaixar.interactable = false;
+            //tampaDownload.transform.position = new Vector2(720, 2433);
+        }
+        else
+        {
+            btnBaixar.interactable = true;
+            //tampaDownload.transform.position = new Vector2(10000, 0);
+        }
     }
 
     // Update is called once per frame

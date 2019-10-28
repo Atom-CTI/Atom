@@ -7,6 +7,7 @@ public class MannagerConsulta : MonoBehaviour
 {
 
     public GameObject tabela;
+    public GameObject btnLixo;
 	
 	// sprites dos átomos
     public Sprite H;
@@ -108,7 +109,9 @@ public class MannagerConsulta : MonoBehaviour
     {
         atomos = new List<Atomos>();
         tabela = GameObject.Find("ScrollTabela");
+        btnLixo = GameObject.Find("btnLixeira");
         tabela.transform.localPosition = new Vector2(45, 0);
+        btnLixo.transform.localPosition = new Vector2(0, 10000);
     }
 
     private void Update()
@@ -169,6 +172,7 @@ public class MannagerConsulta : MonoBehaviour
         bt.transform.localPosition = new Vector3((float)0, (float)-1500, (float)0);
 
         tabela.transform.localPosition = new Vector2(0, 10000);
+        btnLixo.transform.localPosition = new Vector2((float)1.2, 550);
     }
 	
 	// função para mostrar as informações do átomo
@@ -213,6 +217,7 @@ public class MannagerConsulta : MonoBehaviour
         Destroy(GameObject.Find("GMConsulta"));
         molecula = false;
         tabela.transform.localPosition = new Vector2(45, 0);
+        btnLixo.transform.localPosition = new Vector2(0, 10000);
     }
 	
 	// retorna à cena inicial

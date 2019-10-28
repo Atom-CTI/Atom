@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 using System.Text;
 using System.Security.Cryptography;
 using System.Globalization;
+using static UnityEngine.GUI;
 
 public class Login : MonoBehaviour
 {
@@ -27,8 +28,7 @@ public class Login : MonoBehaviour
         txtSenha = GameObject.Find("txtSenha").GetComponent<InputField>();
         txtErro = GameObject.Find("txtErro").GetComponent<Text>();
 		
-		
-        if(Cadastro.ID != null)
+        if (Cadastro.ID != null)
         {
             StartCoroutine(CompletaCampos(Cadastro.ID));
         }
@@ -39,6 +39,7 @@ public class Login : MonoBehaviour
     {
         
     }
+
 	
 	// função para checar se o usuário é
 	// administrador antes de logar

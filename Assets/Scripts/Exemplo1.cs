@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Exemplo1 : MonoBehaviour
 {
@@ -36,27 +37,27 @@ public class Exemplo1 : MonoBehaviour
 
     public void AproxQR()
     {
-        imgAproxQR.transform.position = new Vector3(3, 0, 0);
+        imgAproxQR.transform.position = new Vector3(720, 1400, 0);
     }
 
     public void Tabela()
     {
-        imgTabela.transform.position = new Vector3(3, 0, 0);
+        imgTabela.transform.position = new Vector3(720, 1400, 0);
     }
 
     public void Elemento()
     {
-        imgElemento.transform.position = new Vector3(3, 0, 0);
+        imgElemento.transform.position = new Vector3(720, 1400, 0);
     }
 
     public void Molecula()
     {
-        imgMolecula.transform.position = new Vector3(3, 0, 0);
+        imgMolecula.transform.position = new Vector3(720, 1400, 0);
     }
 
     public void QROculto()
     {
-        imgQROculto.transform.position = new Vector3(3, 0, 0);
+        imgQROculto.transform.position = new Vector3(720, 1400, 0);
     }
 
     public void voltar()
@@ -67,5 +68,18 @@ public class Exemplo1 : MonoBehaviour
         imgMolecula.transform.position = new Vector3(10000, 0, 0);
         imgQROculto.transform.position = new Vector3(10000, 0, 0);
     }
-    
+
+    public void PDF()
+    {
+        SceneManager.LoadScene("PDF");
+    }
+
+    public void Consulta()
+    {
+        SceneManager.LoadScene("Consulta");
+    }
+    public void MinhaConta()
+    {
+        SceneManager.LoadScene("MinhaConta");
+    }
 }

@@ -73,6 +73,7 @@ public class Alterar : MonoBehaviour
         dpdEscolaridade.AddOptions(escolaridades);
 
         txtSenha.interactable = false;
+        txtSenha.readOnly = true;
 
         StartCoroutine(CompletaCampos(ID));
     }
@@ -134,6 +135,7 @@ public class Alterar : MonoBehaviour
     {
         txtSenha.interactable = true;
         txtSenha.text = "";
+        txtSenha.readOnly = false;
         btnAlteraSenha.interactable = false;
     }
 	
